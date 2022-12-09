@@ -6,7 +6,7 @@ import { NextUIProvider } from '@nextui-org/react';
 import './styles/App.css';
 
 // Import components
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Import pages
@@ -24,11 +24,11 @@ function App() {
       <NextUIProvider>
         <Router>
           <>
-            <Navbar />
+            <Header />
             <Routes>
               <Route path="/" element={<SearchMovies />} />
-              <Route path="/rented" element={<RentedMovies />} />
-              <Route path='*' element={<h1 className=''>Wrong page!</h1>} />
+              <Route path="/profile" element={<RentedMovies />} />
+              <Route path='*' element={<h1>Wrong page!</h1>} />
             </Routes>
             <Footer />
           </>
