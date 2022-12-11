@@ -1,14 +1,15 @@
 module.exports = {
   Query: {
-    movies: async(parent, args, {dataSources}) => {
+    movies: async (parent,args,{dataSources}) => {
       try {
-        const nowPlayingMovies = await dataSources.MovieApi.getNowPlaying();
-        return nowPlayingMovies.map(movie => {
-          id: movie.results
-        });
+        const allMovies = await dataSources.MoviesAPI.getNowPlaying();
+        return allMovies.map(movie => ({
+          backdrop_path: movie.backdrop_path,
+          original_title: movie.original_title,
+        }))
       } catch (error) {
         throw error;
       }
-    },
+    }
   }
 }
