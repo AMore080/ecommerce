@@ -1,22 +1,23 @@
 const express = require('express');
+const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
-const MoviesApi = require('./schemas/datasources/movies')
+const MoviesAPI = require('./schemas/movies-api')
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+app.use(cors());
 const server = new ApolloServer({
   typeDefs,
+  resolvers,
   dataSources: () => {
     return {
-      MoviesApi: new MoviesApi()
-    };
-  },
-  playground: {
-    endpoint: '/graphql',
+      MoviesAPI: new MoviesAPI()
+    }
   }
 });
 
