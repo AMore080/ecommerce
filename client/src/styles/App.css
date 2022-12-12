@@ -3,6 +3,22 @@
 }
 
 * {
-
+    font-family: 'Andale Mono', Courier, monospace;
+    font-size: 1.8rem;
+    line-height: 1.5
 }
 
+html {
+    font-size: 62.5%;
+}
+
+
+/* Footer */
+nav, footer {
+    width: var(--full);
+    min-height: 10vh;
+}
+
+main {
+    min-height: 80vh;
+}
