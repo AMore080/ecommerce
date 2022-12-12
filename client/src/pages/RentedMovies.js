@@ -1,11 +1,20 @@
 import React from 'react';
 
 const RentedMovies = () => {
-    return (
-        <>
-           <h1>Test</h1>
-        </>
-    )
+  return (
+    <>
+      {/* Currently rented */}
+      <div>
+
+      </div>
+
+      {/* Watchlist */}
+      <div>
+
+      </div>
+
+    </>
+  )
 };
 
 export default RentedMovies;

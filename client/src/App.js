@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { RestLink } from "apollo-link-rest";
 import { NextUIProvider } from '@nextui-org/react';
 import './styles/App.css';
 
@@ -14,7 +15,10 @@ import RentedMovies from './pages/RentedMovies';
 import SearchMovies from './pages/SearchMovies';
 import SignIn from './pages/SignIn';
 
+const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
+
 const client = new ApolloClient({
+  link: restLink,
   uri: '/graphql',
   cache: new InMemoryCache(),
 });

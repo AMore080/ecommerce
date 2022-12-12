@@ -4,18 +4,18 @@ import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 
 const SignIn = () => {
-    return (
-        <>
-            <Container gap={0} css={{ d: 'flex', flexWrap: 'nowrap' }} className='forms'>
-                {/* Login Form */}
-               <Login />
+  return (
+    <>
+      <Container gap={0} css={{ d: 'flex', flexWrap: 'nowrap' }} className='forms'>
+        {/* Login Form */}
+        <Login />
 
-                <Spacer x={2} />
-                {/* Signup Form */}
-               <SignUp />
-            </Container>
-        </>
-    )
+        <Spacer x={2} />
+        {/* Signup Form */}
+        <SignUp />
+      </Container>
+    </>
+  )
 };
 
 export default SignIn;
