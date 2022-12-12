@@ -122,9 +122,8 @@ const RentedMovies = () => {
 export default RentedMovies;
 
 
-// Cards to hold movies
 
-// Rentals section --> started rntals
+// Rentals section --> started rentals
 // display expiration 
 // remove automaticlly when expired
 
