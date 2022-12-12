@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Text, useTheme } from "@nextui-org/react";
+import { Navbar, Text, useTheme } from '@nextui-org/react';
 import Auth from '../utils/auth';
 
-const Nav = () => {
-    const [variant, setVariant] = useState("underline");
-    const [activeColor, setActiveColor] = useState("success");
+const Header = () => {
+    const [variant, setVariant] = useState('underline');
+    const [activeColor, setActiveColor] = useState('success');
     const { isDark } = useTheme();
 
     return (
         <>
-            <Navbar isBordered={isDark} variant="sticky">
+            <Navbar isBordered={isDark} variant='sticky'>
                 <Navbar.Brand as={Link} to='/'>
-                    <Text b color="inherit" hideIn="xs" >
+                    <Text b color='inherit' hideIn='xs' >
                         CodeMovie!
                     </Text>
                 </Navbar.Brand>
-                <Navbar.Content activeColor={activeColor} hideIn="xs" variant={variant}>
+                <Navbar.Content activeColor={activeColor} hideIn='xs' variant={variant}>
                     <Navbar.Link as={Link} to='/'>Search</Navbar.Link>
                     {/* If user is logged in display 'Profile' and  'Logout' */}
                     {Auth.loggedIn() ? (
@@ -26,7 +26,7 @@ const Nav = () => {
                         </>
                     ) : (
                         <Navbar.Content>
-                            <Navbar.Link as={Link} to='/login-signup'>Login/Sign Up</Navbar.Link>
+                            <Navbar.Link as={Link} to='/signin'>Login/Sign Up</Navbar.Link>
                         </Navbar.Content>
 
                     )}
@@ -37,4 +37,4 @@ const Nav = () => {
     )
 };
 
-export default Nav
+export default Header

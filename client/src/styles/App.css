@@ -1,6 +1,4 @@
-:root {
-
-}
+:root {}
 
 * {
     font-family: 'Andale Mono', Courier, monospace;
@@ -14,7 +12,8 @@ html {
 
 
 /* Footer */
-nav, footer {
+nav,
+footer {
     width: var(--full);
     min-height: 10vh;
 }
@@ -22,3 +21,47 @@ nav, footer {
 main {
     min-height: 80vh;
 }
+
+/* Sign in forms */
+form {
+    margin: 3rem auto;
+    padding: 1rem 0;
+    width: 80%;
+    text-align: center;
+}
+
+form label {
+    display: inline-block;
+    font-size: 2rem;
+    text-align: left;
+    width: 75%;
+    margin: 1rem;
+}
+
+form input {
+    padding: 1rem;
+    width: 75%;
+}
+
+form button {
+    height: 3.5rem;
+    width: 20rem;
+    margin-top: 1rem;
+}
+
+
+@media (max-width: 992px) {
+
+   .forms {
+        flex-wrap: wrap !important;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .forms {
+         flex-wrap: wrap !important;
+     }
+ 
+ }
