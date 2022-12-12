@@ -1,39 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Text, } from "@nextui-org/react";
+import { Navbar, Text, useTheme } from "@nextui-org/react";
 import Auth from '../utils/auth';
 
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
-
-const Header = () => {
+const Nav = () => {
     const [variant, setVariant] = useState("underline");
     const [activeColor, setActiveColor] = useState("success");
+    const { isDark } = useTheme();
 
     return (
         <>
-            <Navbar variant="sticky">
-                <Navbar.Brand>
-                    <Text b color="inherit" hideIn="xs">
+            <Navbar isBordered={isDark} variant="sticky">
+                <Navbar.Brand as={Link} to='/'>
+                    <Text b color="inherit" hideIn="xs" >
                         CodeMovie!
                     </Text>
                 </Navbar.Brand>
                 <Navbar.Content activeColor={activeColor} hideIn="xs" variant={variant}>
                     <Navbar.Link as={Link} to='/'>Search</Navbar.Link>
+                    {/* If user is logged in display 'Profile' and  'Logout' */}
                     {Auth.loggedIn() ? (
                         <>
                             <Navbar.Link as={Link} to='/profile'>Profile</Navbar.Link>
                             <Navbar.Link onClick={Auth.logout}>Logout</Navbar.Link>
                         </>
                     ) : (
-                        <Navbar.Link as={Link} to='/login'>Login/Sign Up</Navbar.Link>
+                        <Navbar.Content>
+                            <Navbar.Link as={Link} to='/login-signup'>Login/Sign Up</Navbar.Link>
+                        </Navbar.Content>
 
                     )}
-                    <Navbar.Link as={Link} to='/'>Cart</Navbar.Link>
+                    <Navbar.Link as={Link} to='/profile'>Cart</Navbar.Link>
                 </Navbar.Content>
             </Navbar>
         </>
     )
 };
 
-export default Header
+export default Nav
