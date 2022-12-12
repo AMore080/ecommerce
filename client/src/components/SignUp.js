@@ -1,55 +1,56 @@
-import React from 'react';
-// import { useMutation } from '@apollo/client'
-// import Auth from '../utils/auth';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client'
+import Auth from '../utils/auth';
 
-// import { ADD_USER } from '../utils/mutations'
+import { ADD_USER } from '../utils/mutations';
 
 const SignUp = () => {
-  // const [formState, setFormState] = useState({ email: '', password: '' });
-  // const [addUser] = useMutation(ADD_USER);
+  const [formData, setformData] = useState({ username: '', email: '', password: '' });
+  const [addUser] = useMutation(ADD_USER);
 
-  // const handleChange = (event) => {
-  //     const { name, value } = event.target;
-  //     setFormState({
-  //         ...formState,
-  //         [name]: value,
-  //     });
-  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setformData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-  // const handleFormSubmit = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //         const { data } = await addUser({
-  //         variables: {
-  //             ...formState
-  //         },
-  //     });
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  //     Auth.login(data.addUser.token);
-  //     } catch (err) {
-  //         console.log(err);
-  //     }
+    try {
+      const { data } = await addUser({
+        variables: { ...formData },
+      });
 
-  //     setFormState({
-  //         email: '',
-  //         password: '',
-  //     });
-  // };
+      Auth.login(data.addUser.token);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setformData({
+      username: '',
+      email: '',
+      password: '',
+    });
+  };
 
   return (
     <>
       {/* Signup Form */}
       <div>
         <h1 className='text-center'>Sign Up</h1>
-        <form className='form'>
+        <form className='form' onSubmit={handleFormSubmit}>
           <label for='username'>Username</label>
           <input
             id='username'
             name='username'
             type='username'
             placeholder='Username'
-          // value={formState.username}
-          // onChange={handleChange}
+            value={formData.username}
+            onChange={handleInputChange}
+            required
           />
           <label for='email'>Email</label>
           <input
@@ -57,8 +58,9 @@ const SignUp = () => {
             name='email'
             type='email'
             placeholder='youremail@test.com'
-          // value={formState.email}
-          // onChange={handleChange}
+            value={formData.email}
+            onChange={handleInputChange}
+            required
           />
           <label for='pwd'>password</label>
           <input
@@ -66,10 +68,12 @@ const SignUp = () => {
             name='password'
             type='password'
             placeholder='********'
-          // value={formState.password}
-          // onChange={handleChange}
+            value={formData.password}
+            onChange={handleInputChange}
+            required
           />
-          <button type='button' >
+          <button disabled={!(formData.username && formData.email && formData.password)}
+          type='submit'>
             SIGN UP
           </button>
         </form>

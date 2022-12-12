@@ -24,38 +24,38 @@ export const ADD_USER = gql`
     }
 `;
 
-export const RENT_MOVIE = gql`
-     mutation rentMovie($movieData: inpMovieData!) {
-        rentMovie(movieData: $movieData) {
-            _id
-            username
-            email
-            inpMovieData {
-                director
-                description
-                movieId
-                image
-                link
-                title
-            }
-        }
-    }
-`;
+// export const RENT_MOVIE = gql`
+//      mutation rentMovie($movieData: inpMovieData!) {
+//         rentMovie(movieData: $movieData) {
+//             _id
+//             username
+//             email
+//             inpMovieData {
+//                 director
+//                 description
+//                 movieId
+//                 image
+//                 link
+//                 title
+//             }
+//         }
+//     }
+// `;
 
-export const EXPIRE_MOVIE = gql`
-     mutation expireMovie ($movieData: inpMovieData!) {
-        expireMovie(movie) {
-            _id
-            username
-            email
-            inpMovieData {
-                director
-                description
-                movieId
-                image
-                link
-                title
-            }
-        }
-    }
-`;
+// export const EXPIRE_MOVIE = gql`
+//      mutation expireMovie ($movieData: inpMovieData!) {
+//         expireMovie(movie) {
+//             _id
+//             username
+//             email
+//             inpMovieData {
+//                 director
+//                 description
+//                 movieId
+//                 image
+//                 link
+//                 title
+//             }
+//         }
+//     }
+// `;
