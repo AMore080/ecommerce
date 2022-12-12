@@ -6,12 +6,13 @@ import { NextUIProvider } from '@nextui-org/react';
 import './styles/App.css';
 
 // Import components
-import Header from './components/Header';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
 
 // Import pages
 import RentedMovies from './pages/RentedMovies';
 import SearchMovies from './pages/SearchMovies';
+import SignIn from './pages/SignIn';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -24,12 +25,15 @@ function App() {
       <NextUIProvider>
         <Router>
           <>
-            <Header />
-            <Routes>
+            <Nav />
+            <main>
+              <Routes>
               <Route path="/" element={<SearchMovies />} />
               <Route path="/profile" element={<RentedMovies />} />
+              <Route path="/login-signup" element={<SignIn />} />
               <Route path='*' element={<h1>Wrong page!</h1>} />
             </Routes>
+            </main>
             <Footer />
           </>
         </Router>
