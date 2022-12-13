@@ -6,11 +6,11 @@ import SignUp from '../components/SignUp';
 const SignIn = () => {
   return (
     <>
-      <Container gap={0} css={{ d: 'flex', flexWrap: 'nowrap' }} className='forms'>
+      <Container fluid css={{ d: 'flex', flexWrap: 'nowrap' }} className='forms'>
         {/* Login Form */}
         <Login />
 
-        <Spacer x={2} />
+        <Spacer x={5} />
         {/* Signup Form */}
         <SignUp />
       </Container>

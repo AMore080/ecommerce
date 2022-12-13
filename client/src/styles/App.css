@@ -1,16 +1,32 @@
 :root {
   --full: 100%;
-
+  --green: #2b5f4e;
+  --light: #72b3a4;
+  --sea: #287b8b;
+  --ocean: #053b4b;
+  --olive: #183323;
+  --light: #cef0e7;
+  --mint: #add9c5;
+  --teal: #388e8f;
+  --iceberg: #ade3e3;
+  --midnight: #052029;
+  --dark: #131d0d;
+  --leaf: #5f936c;
 }
 
 * {
   font-family: 'Andale Mono', Courier, monospace;
-  font-size: 18px;
-  line-height: 1.5
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--teal);
+}
+
+body {
+  background-color: var(--midnight);
 }
 
 html {
-  /* font-size: 62.5%; */
+  font-size: 62.5%;
 }
 
 
@@ -19,39 +35,43 @@ nav,
 footer {
   width: var(--full);
   min-height: 10vh;
+  background-color: var(--ocean) !important;
+
 }
 
 main {
-  margin: 15px;
+  margin: 1.5rem;
   min-height: 80vh;
 }
 
 /* Sign in forms */
 
 .form {
-  margin: 30px auto;
-  padding: 10px 0;
-  width: 80%;
+  margin: 3rem auto;
+  padding: 1rem 0;
+  width: 40rem;
+  height: 40rem;
   text-align: center;
+  background-color: var(--sea);
 }
 
 .form label {
   display: inline-block;
-  font-size: 20px;
+  font-size: 2rem;
   text-align: left;
   width: 75%;
-  margin: 10px;
+  margin: 1rem;
 }
 
 .form input {
-  padding: 10px;
+  padding: 1rem;
   width: 75%;
 }
 
 .form button {
-  height: 35px;
-  width: 200px;
-  margin-top: 10px;
+  height: 3.5rem;
+  width: 20rem;
+  margin-top: 1rem;
 }
 
 
