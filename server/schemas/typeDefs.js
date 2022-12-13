@@ -7,17 +7,15 @@ const typeDefs = gql`
     user: User
   }
 
-  type data {
-    results: [result],
-  }
-
   type result {
     backdrop_path: String!
     original_title: String!
+    id: ID!
   }
 
   type Query {
      me: User
+     movies: [result]
   }
 
   type User {
@@ -25,16 +23,6 @@ const typeDefs = gql`
     username: String!
     email: String
     savedMovies: [Movie]
-    rentalStart: Date
-  }
-
-  type Movie {
-    movieId: ID!
-    director: [String]
-    description: String
-    image: String
-    link: String
-    title: String!
   }
 
   input inpMovieData {
@@ -47,13 +35,10 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    saveMovie(movieData: inpMovieData!): User
-    removeMovie(movieId: ID!): User
+    addMovie(title: String!, id: ID!, poster_path: String!)
   }
+`
 
-
-
-`;
 module.exports = typeDefs;
+
+//    login(email: String!, password: String!): Auth (removed  line from mutation for now)     addUser(username: String!, email: String!, password: String!): Auth
