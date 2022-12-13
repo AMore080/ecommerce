@@ -23,11 +23,6 @@ const userSchema = new Schema(
         },
      
         savedMovies: [movieSchema],
-
-    rentalStart: {
-        type: Date,
-        
-    }
    
   },
 

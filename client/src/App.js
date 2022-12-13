@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { RestLink } from "apollo-link-rest";
 import { NextUIProvider } from '@nextui-org/react';
-import { RestLink } from "apollo-link-rest";
 import './styles/App.css';
 
 // Import components
