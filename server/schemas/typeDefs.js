@@ -7,6 +7,15 @@ const typeDefs = gql`
     user: User
   }
 
+  type data {
+    results: [result],
+  }
+
+  type result {
+    backdrop_path: String!
+    original_title: String!
+  }
+
   type Query {
      me: User
   }
