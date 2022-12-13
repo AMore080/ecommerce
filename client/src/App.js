@@ -2,26 +2,27 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { RestLink } from "apollo-link-rest";
 import { NextUIProvider } from '@nextui-org/react';
 import { RestLink } from "apollo-link-rest";
 import './styles/App.css';
 
 // Import components
-import Header from './components/Header';
+import Header from './components/Nav';
 import Footer from './components/Footer';
 
 // Import pages
 import RentedMovies from './pages/RentedMovies';
 import SearchMovies from './pages/SearchMovies';
-
-// Pages
+import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 
-// const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
+const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
 
-//KEEP IN MIND THAT THE URI IS NOT PERMANENT. THIS WILL BE CHANGED TO '/graphql' WHEN WE PUSH TO HEROKU
+
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  link: restLink,
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -32,12 +33,15 @@ function App() {
         <Router>
           <>
             <Header />
-            <Routes>
+            <main>
+              <Routes>
               <Route path="/" element={<SearchMovies />} />
               <Route path="/home" element={<Home />} />
               <Route path="/profile" element={<RentedMovies />} />
+              <Route path="/signin" element={<SignIn />} />
               <Route path='*' element={<h1>Wrong page!</h1>} />
             </Routes>
+            </main>
             <Footer />
           </>
         </Router>

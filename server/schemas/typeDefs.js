@@ -38,7 +38,7 @@ const typeDefs = gql`
   }
 
   input inpMovieData {
-    authors: [String]
+    director: [String]
     description: String!
     movieId: String!
     image: String
