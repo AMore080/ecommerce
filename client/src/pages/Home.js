@@ -9,9 +9,9 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_NOWPLAYING, {
     fetchPolicy: "no-cache"
   });
+  console.log(data);
 
-  const nowPlayingList = data?.data.results || [];
-  console.log(nowPlayingList)
+  const nowPlayingList = data?.movies|| [];
 
   return (
     <div className="card bg-white card-rounded w-50">
