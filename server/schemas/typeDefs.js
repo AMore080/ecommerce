@@ -13,16 +13,22 @@ const typeDefs = gql`
     id: ID!
   }
 
+  type SingleMovie {
+    id: ID!
+    original_title: String!
+    overview: String!
+  }
+
   type Query {
      me: User
      movies: [result]
+     singleMovie(id: ID!): SingleMovie
   }
 
   type User {
     _id: ID!
     username: String!
     email: String
-    savedMovies: [Movie]
   }
 
   input inpMovieData {
@@ -33,11 +39,11 @@ const typeDefs = gql`
     link: String
     title: String!
   }
-
-  type Mutation {
-    addMovie(title: String!, id: ID!, poster_path: String!)
-  }
 `
+
+  // type Mutation {
+  //   addMovie(title: String!, id: ID!, poster_path: String!)
+  // }
 
 module.exports = typeDefs;
 

@@ -26,6 +26,14 @@ const resolvers = {
             throw error;
           }
     },
+      singleMovie: async(parent, args, {dataSources}) => {
+        try{
+          const singleMovie = await dataSources.MoviesAPI.getMovie(args.id);
+          return singleMovie;
+        } catch (error) {
+          throw error;
+        }
+      }
   }
 }
     // Mutation: {
