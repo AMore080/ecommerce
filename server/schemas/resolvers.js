@@ -16,6 +16,24 @@ const resolvers = {
             throw new AuthenticationError('You are not logged in!');
 
         },
+        order: async(parent, {_id}, context) => {
+
+        },
+        checkout: async (parent, args, context) => {
+            const url = new URL(context.headers.referer).origin;
+            const order = new Order({ products: args.products });
+            const line_items = [];
+
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'payment',
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`
+            });
+
+            return { session: session.id };
+        }
     },
 
     Mutation: {
