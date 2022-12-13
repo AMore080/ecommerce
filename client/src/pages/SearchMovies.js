@@ -4,13 +4,15 @@ import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { QUERY_NOWPLAYING } from '../utils/queries';
 
 const SearchMovies = () => {
-  // const { loading, data } = useQuery(QUERY_NOWPLAYING, {
-  //     fetchPolicy: "no-cache"
-  //   });
+  const { loading, data } = useQuery(QUERY_NOWPLAYING, {
+      fetchPolicy: "no-cache"
+    });
 
-  //   const nowPlayingList = data?.data.results || [];
-  //   console.log(nowPlayingList)
+    const nowPlayingList = data?.data.results || [];
+    console.log(nowPlayingList)
 
+
+    
   return (
     <>
       <section className='container'>
