@@ -7,34 +7,33 @@ const typeDefs = gql`
     user: User
   }
 
-  type data {
-    results: [result],
-  }
-
   type result {
     backdrop_path: String!
     original_title: String!
+    id: ID!
+  }
+
+  type SingleMovie {
+    id: ID!
+    original_title: String!
+    overview: String!
+    poster_path: String!
   }
 
   type Query {
      me: User
+     movies: [result]
+     singleMovie(id: ID!): SingleMovie
+  }
+
+  type Mutation {
+    addMovieWatchList(id: String!, original_title: String!, overview: String!, poster_path: String!): SingleMovie
   }
 
   type User {
     _id: ID!
     username: String!
     email: String
-    savedMovies: [Movie]
-    rentalStart: Date
-  }
-
-  type Movie {
-    movieId: ID!
-    director: [String]
-    description: String
-    image: String
-    link: String
-    title: String!
   }
 
   input inpMovieData {
@@ -45,15 +44,12 @@ const typeDefs = gql`
     link: String
     title: String!
   }
+`
 
-  type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    saveMovie(movieData: inpMovieData!): User
-    removeMovie(movieId: ID!): User
-  }
+  // type Mutation {
+  //   addMovie(title: String!, id: ID!, poster_path: String!)
+  // }
 
-
-
-`;
 module.exports = typeDefs;
+
+//    login(email: String!, password: String!): Auth (removed  line from mutation for now)     addUser(username: String!, email: String!, password: String!): Auth
