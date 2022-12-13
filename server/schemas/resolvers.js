@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+const { MovieList } = require('../models');
 
 const resolvers = {
     Query: {
@@ -34,6 +35,12 @@ const resolvers = {
           throw error;
         }
       }
+  },
+  Mutation: {
+    addMovieWatchList: async(parent, args, {dataSources}) => {
+      const addedMovie = await MovieList.create(args);
+      return addedMovie;
+    }
   }
 }
     // Mutation: {

@@ -17,12 +17,17 @@ const typeDefs = gql`
     id: ID!
     original_title: String!
     overview: String!
+    poster_path: String!
   }
 
   type Query {
      me: User
      movies: [result]
      singleMovie(id: ID!): SingleMovie
+  }
+
+  type Mutation {
+    addMovieWatchList(id: String!, original_title: String!, overview: String!, poster_path: String!): SingleMovie
   }
 
   type User {
