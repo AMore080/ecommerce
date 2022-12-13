@@ -1,10 +1,34 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
+
+export const QUERY_ME = gql`
+    {
+        me {
+            _id
+            username
+            email
+            inpMovieData {
+                director
+                description
+                movieId
+                image
+                link
+                title
+            }
+        }
+    }
+`;
 
 export const QUERY_NOWPLAYING = gql`
-  query Movies {
-    movies {
-      backdrop_path
-      original_title
+  query nowPlaying {
+    data
+      @rest(
+        type: Movies
+        path: "now_playing/?api_key=${process.env.API_KEY}"
+      ) {
+      results {
+        title
+        backdrop_path
+      }
     }
   }
 `;
