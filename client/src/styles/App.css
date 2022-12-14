@@ -1,24 +1,24 @@
+/* Color pallet inspired by https://colorpalette.org/blue-green-smoke-color-palette/ */
+/* Color names from https://colornamer.robertcooper.me/ */
 :root {
   --full: 100%;
-  --green: #2b5f4e;
-  --light: #72b3a4;
-  --sea: #287b8b;
-  --ocean: #053b4b;
-  --olive: #183323;
-  --light: #cef0e7;
-  --mint: #add9c5;
-  --teal: #388e8f;
-  --iceberg: #ade3e3;
   --midnight: #052029;
-  --dark: #131d0d;
-  --leaf: #5f936c;
+  --crowberryBlue: #053b4b;
+  --verditerBlue: #55adbe;
+  --seafoam: #ade3e3;
+  --cranachBlue: #287b8b;
+  --breeze: #c1ecf4;
+  --stream: #96ccd7;
+  --ocean: #64afbe;
+  --aqueous: #388e8f;
+  --green: #add9c5;
 }
 
 * {
   font-family: 'Andale Mono', Courier, monospace;
   font-size: 1.8rem;
   line-height: 1.5;
-  color: var(--teal);
+  color: var(--verditerBlue);
 }
 
 body {
@@ -29,33 +29,117 @@ html {
   font-size: 62.5%;
 }
 
-
-/* Footer */
+/* Header & Footer */
 nav,
 footer {
   width: var(--full);
   min-height: 10vh;
-  background-color: var(--ocean) !important;
+  background-color: var(--crowberryBlue) !important;
+}
 
+nav {
+  border-bottom: 0.3rem solid var(--cranachBlue);
+}
+
+footer {
+  border-top: 0.3rem solid var(--cranachBlue);
 }
 
 main {
-  margin: 1.5rem;
+  margin: 2rem;
+  margin-top: 3rem;
   min-height: 80vh;
 }
 
-/* Sign in forms */
+/* Movie Carousel */
+.carousel, .carousel img{
+  border: 0.1rem solid var(--stream) !important;
+  border-radius: 0.5rem;
 
+}
+.carousel,
+.carousel img {
+  height: 30rem;
+  width: 40rem;
+  margin: auto;
+}
+
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+  visibility: hidden;
+}
+
+.carousel:hover .carousel-control-prev-icon,
+.carousel:hover .carousel-control-next-icon {
+  visibility: visible;
+}
+
+/* Search page */
+.search {
+  background-color: var(--cranachBlue);
+  border: 0.3rem solid var(--ocean);
+  border-radius: 1rem;
+  color: var(--ocean);
+  width: 70%;
+}
+
+.search-form input,
+.search-form select {
+  background-color: var(--breeze);
+  border: 0.1rem solid var(--stream);
+  border-radius: 0.5rem;
+  color: var(--aqueous);
+  font-size: 1.5rem !important;
+  margin: auto;
+  padding: 1.5rem;
+  height: 6rem;
+  width: 80% !important;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+  background-color: #bbf5ff !important;
+  border: 0.1rem solid #82cedd !important;
+  color: #159395 !important;
+}
+
+::placeholder {
+  color: var(--aqueous) !important;
+}
+
+.search-btn,
+.form button {
+  text-align: center !important;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
+  color: var(--aqueous);
+  width: 30%;
+}
+
+.search-btn:hover,
+.form button:hover {
+  background-position: right center;
+  color: var(--crowberryBlue);
+}
+
+/* Sign in forms */
 .form {
+  background-color: var(--cranachBlue);
+  border: 0.3rem double var(--green);
+  border-radius: 1.5rem;
   margin: 3rem auto;
   padding: 1rem 0;
-  width: 40rem;
-  height: 40rem;
+  width: 50rem;
+  height: 50rem;
   text-align: center;
-  background-color: var(--sea);
+}
+
+.form h1 {
+  color: var(--green);
 }
 
 .form label {
+  color: var(--ocean);
   display: inline-block;
   font-size: 2rem;
   text-align: left;
@@ -64,29 +148,56 @@ main {
 }
 
 .form input {
-  padding: 1rem;
+  background-color: var(--ocean);
+  border: 0.15rem solid var(--green);
+  border-radius: 0.5rem;
+  color: var(--breeze);
+  padding: 1.2rem;
   width: 75%;
+}
+
+.form input:focus {
+  background-color: var(--breeze);
+  border: 0.15rem solid var(--stream);
+  color: var(--cranachBlue);
 }
 
 .form button {
   height: 3.5rem;
   width: 20rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
+  border: var(--ocean);
 }
 
-
-@media (max-width: 992px) {
-
-  .forms {
-    flex-wrap: wrap !important;
-  }
-
+/* Profile */
+.rented,
+.watchlist {
+  margin: 2rem;
 }
 
-@media (max-width: 768px) {
+.rented .btn,
+.watchlist .btn {
+  background-color: var(--cranachBlue);
+  border: 0.2rem solid var(--stream);
+  border-radius: 1.5rem;
+  color: var(--breeze);
+  height: 5.5rem !important;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
 
-  .forms {
-    flex-wrap: wrap !important;
-  }
+.nextui-c-hhqfap {
+  color: var(--verditerBlue) !important;
+}
 
+.nextui-c-egxOLa {
+  background-color: var(--crowberryBlue) !important;
+}
+
+nav div ul li a:hover {
+  color: var(--green) !important;
+}
+
+nav div ul li a:focus {
+  color: var(--green);
 }

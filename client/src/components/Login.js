@@ -37,38 +37,36 @@ const Login = () => {
   return (
     <>
       {/* Login Form */}
-      < div >
+      <form className='form' onSubmit={handleFormSubmit}>
         <h1 className='text-center'>Login</h1>
-        <form className='form' onSubmit={handleFormSubmit}>
-          <label for='email'>Email</label>
-          <input
-            id='email'
-            name='email'
-            type='text'
-            placeholder='youremail@test.com'
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <label for='pwd'>password</label>
-          <input
-            id='pwd'
-            name='password'
-            type='password'
-            placeholder='********'
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button  disabled={!(formData.email && formData.password)}
-          type='submit' >
-            LOGIN
-          </button>
-          {error ? (
-            <div>
-              <p className='error-text'>The provided credentials are incorrect</p>
-            </div>
-          ) : null}
-        </form>
-      </div >
+        <label for='email'>Email</label>
+        <input
+          id='email'
+          name='email'
+          type='text'
+          placeholder='youremail@test.com'
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <label for='pwd'>password</label>
+        <input
+          id='pwd'
+          name='password'
+          type='password'
+          placeholder='********'
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <button disabled={!(formData.email && formData.password)}
+          type='submit' className='rounded-pill'>
+          LOGIN
+        </button>
+        {error ? (
+          <div>
+            <p className='error-text'>The provided credentials are incorrect</p>
+          </div>
+        ) : null}
+      </form>
     </>
   )
 };

@@ -10,7 +10,7 @@ const SignIn = () => {
         {/* Login Form */}
         <Login />
 
-        <Spacer x={5} />
+        <Spacer x={2} />
         {/* Signup Form */}
         <SignUp />
       </Container>

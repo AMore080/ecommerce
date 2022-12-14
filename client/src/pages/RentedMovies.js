@@ -10,64 +10,21 @@ const RentedMovies = () => {
   return (
     <>
       {/* Currently rented */}
-      <div>
+      <div className='rented'>
 
-        <button className='btn btn-secondary btn-lg btn-block' onClick={() => setVisible(!visible)}>Rentals</button>
+        <button className='btn btn-block' onClick={() => setVisible(!visible)}>Rentals</button>
         {visible &&
 
           <div>
             <Grid.Container gap={3} justify="center">
               <Grid xs={12} sm={4}>
-                <Card css={{ w: "100%", h: "400px" }}>
+                <Card css={{ w: "100%", h: "400px", border: '$borderWeights$normal solid #96ccd7' }}>
                   <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-                    <Text size={15} weight="bold" transform="uppercase" color="#ffffffAA">
+                    <Text size={15} weight="bold" transform="uppercase" color="#c41212">
                       Expires in [X] days
                     </Text>
                   </Card.Header>
-                  <Card.Image
-                    src='https://nextui.org/images/card-example-6.jpeg'
-                    width="100%"
-                    height="100%"
-                    objectFit="cover"
-                    alt="Movie Poster"
-                  />
-                  <Card.Footer
-                    isBlurred
-                    css={{
-                      position: "absolute",
-                      bgBlur: "#ffffff66",
-                      borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-                      bottom: 0,
-                      zIndex: 1,
-                    }}
-                  >
-                    <Row>
-                      <Col>
-                        <Text color="#000" size={18} className='text-center'>
-                          Movie Title
-                        </Text>
-                      </Col>
-                    </Row>
-                  </Card.Footer>
-                </Card>
-              </Grid>
-            </Grid.Container>
-          </div>
-        }
-      </div>
-
-      <Spacer y={3} />
-
-      {/* Watchlist */}
-      <div>
-        <button className='btn btn-secondary btn-lg btn-block' onClick={() => setDisplay(!display)}>Watchlist</button>
-
-        {display &&
-          <div>
-            <Grid.Container gap={3} justify="center">
-              <Grid xs={12} sm={4}>
-                <Card css={{ w: "100%", h: "400px" }}>
-                  <Card.Body css={{ p: 0 }}>
+                  <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
                     <Card.Image
                       src='https://nextui.org/images/card-example-6.jpeg'
                       width="100%"
@@ -80,26 +37,75 @@ const RentedMovies = () => {
                     isBlurred
                     css={{
                       position: "absolute",
-                      bgBlur: "#ffffff66",
-                      borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+                      bgBlur: '#ffffff99',
+                      borderTop: '$borderWeights$light solid #96ccd7',
                       bottom: 0,
                       zIndex: 1,
                     }}
                   >
                     <Row>
                       <Col>
-                        <Text color="#000" size={18}>
+                        <Text color="#000" size={20} className='text-center' css={{
+                          color: '#287b8b', textGradient: '45deg, #c1ecf4 -20%, #388e8f 50%'
+                        }}>
+                          Movie Title
+                        </Text>
+                      </Col>
+                    </Row>
+                  </Card.Footer>
+                </Card>
+              </Grid>
+            </Grid.Container>
+          </div>
+        }
+      </div>
+
+      <Spacer y={1} />
+
+      {/* Watchlist */}
+      <div className='watchlist'>
+        <button className='btn btn-block' onClick={() => setDisplay(!display)}>Watchlist</button>
+
+        {display &&
+          <div>
+            <Grid.Container gap={3} justify="center">
+              <Grid xs={12} sm={4}>
+                <Card css={{ w: "100%", h: "400px", border: '$borderWeights$normal solid #96ccd7' }}>
+                  <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
+                    <Card.Image
+                      src='https://nextui.org/images/card-example-6.jpeg'
+                      width="100%"
+                      height="100%"
+                      objectFit="cover"
+                      alt="Movie Poster"
+                    />
+                  </Card.Body>
+                  <Card.Footer
+                    isBlurred
+                    css={{
+                      position: "absolute",
+                      bgBlur: '#ffffff99',
+                      borderTop: '$borderWeights$light solid #96ccd7',
+                      bottom: 0,
+                      zIndex: 1,
+                    }}
+                  >
+                    <Row>
+                      <Col>
+                        <Text size={18} css={{
+                          color: '#287b8b', textGradient: '45deg, #c1ecf4 -20%, #388e8f 50%', ml: 10
+                        }}>
                           Movie Title
                         </Text>
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <Button flat auto rounded color="secondary">
+                          <Button flat auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
                             <Text
-                              css={{ color: "inherit" }}
-                              size={12}
-                              weight="bold"
-                              transform="uppercase"
+                              color='#c1ecf4'
+                              size={14}
+                              weight='bold'
+                              transform='uppercase'
                             >
                               Start Rental
                             </Text>
