@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+/src/components/Checkout.js
+
 # testing
 /coverage
 
