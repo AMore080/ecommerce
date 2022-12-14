@@ -4,6 +4,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 require('dotenv').config();
 const { authMiddleware } = require('./utils/auth');
+const stripe = require('stripe')(process.env.SECRET_STRIPE);
 
 const { typeDefs, resolvers } = require('./schemas');
 const MoviesAPI = require('./schemas/movies-api')
@@ -34,6 +35,22 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
+app.post('/checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        id: 1,
+        quantity: 1,
+      },
+    ],
+    payment_method_types: ['card'],
+    mode: 'payment',
+    success_url: `${process.env.CLIENT_URL}/checkout-success`,
+    cancel_url: `${process.env.CLIENT_URL}/profile`,
+  });
+
+  res.send({ url: session.url });
+});
 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();

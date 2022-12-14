@@ -20,21 +20,21 @@ const resolvers = {
         order: async (parent, { _id }, context) => {
 
         },
-        checkout: async (parent, args, context) => {
-            const url = new URL(context.headers.referer).origin;
-            const order = new Order({ products: args.products });
-            const line_items = [];
+        // checkout: async (parent, args, context) => {
+        //     const url = new URL(context.headers.referer).origin;
+        //     const order = new Order({ products: args.products });
+        //     const line_items = [];
 
-            const session = await stripe.checkout.sessions.create({
-                payment_method_types: ['card'],
-                line_items,
-                mode: 'payment',
-                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${url}/`
-            });
+        //     const session = await stripe.checkout.sessions.create({
+        //         payment_method_types: ['card'],
+        //         line_items,
+        //         mode: 'payment',
+        //         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        //         cancel_url: `${url}/`
+        //     });
 
-            return { session: session.id };
-        },
+        //     return { session: session.id };
+        // },
         movies: async (parent, args, { dataSources }) => {
             try {
                 const allMovies = await dataSources.MoviesAPI.getNowPlaying();

@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { Spacer } from '@nextui-org/react';
+import { loadStripe } from '@stripe/stripe-js';
+require('dotenv').config();
+
+const stripePromise = loadStripe(process.env.PUBLIC_KEY)
 
 const RentedMovies = () => {
   const [visible, setVisible] = useState(false);
   const [display, setDisplay] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
 
 
   return (
@@ -94,7 +106,8 @@ const RentedMovies = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <Button flat auto rounded color="secondary">
+                          <form action = "http://localhost:3000/checkout-session" method = "POST">
+                          <Button flat auto rounded color="secondary" type="submit">
                             <Text
                               css={{ color: "inherit" }}
                               size={12}
@@ -104,6 +117,7 @@ const RentedMovies = () => {
                               Start Rental
                             </Text>
                           </Button>
+                          </form>
                         </Row>
                       </Col>
                     </Row>

@@ -37,6 +37,7 @@ function App() {
               <Route path="/" element={<SearchMovies />} />
               <Route path="/home" element={<Home />} />
               <Route path="/profile" element={<RentedMovies />} />
+              <Route path="/checkout" element={<RentedMovies />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path='*' element={<h1>Wrong page!</h1>} />
             </Routes>
