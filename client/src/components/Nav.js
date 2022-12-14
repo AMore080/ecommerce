@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <>
       <Navbar variant='sticky'>
-        <Navbar.Brand as={Link} to='/'>
+        <Navbar.Brand as={Link} to='/' className='title'>
           <Text b color='#96ccd7' hideIn='xs' size={30}>
             CodeMovie!
           </Text>

@@ -15,7 +15,7 @@
 }
 
 * {
-  font-family: 'Andale Mono', Courier, monospace;
+  font-family: 'Chakra Petch', sans-serif;
   font-size: 1.8rem;
   line-height: 1.5;
   color: var(--verditerBlue);
@@ -41,6 +41,27 @@ nav {
   border-bottom: 0.3rem solid var(--cranachBlue);
 }
 
+.title {
+  font-style: italic;
+}
+
+.greeting {
+  font-size: 4rem;
+  color: white;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #c0f2ff, 0 0 20px #c0f2ff, 0 0 30px #00e6e2, 0 0 40px #00d3e6, 0 0 50px #00b4e6, 0 0 60px #00a1e6, 0 0 70px #00a9e6;
+  }
+  to {
+    text-shadow: 0 0 20px #c0f2ff, 0 0 30px #4ddeff, 0 0 40px #4dffea, 0 0 50px #4dd0ff, 0 0 60px #4df6ff, 0 0 70px #4dc4ff, 0 0 80px #4dcdff;
+  }
+}
+
 footer {
   border-top: 0.3rem solid var(--cranachBlue);
 }
@@ -52,11 +73,13 @@ main {
 }
 
 /* Movie Carousel */
-.carousel, .carousel img{
+.carousel,
+.carousel img {
   border: 0.1rem solid var(--stream) !important;
   border-radius: 0.5rem;
 
 }
+
 .carousel,
 .carousel img {
   height: 30rem;

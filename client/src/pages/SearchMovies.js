@@ -13,7 +13,7 @@ const SearchMovies = () => {
     <>
       <Container>
         <div className='m-auto p-5 search text-center'>
-          <h1 className='mb-4 title'>Welcome to CodeMovie!</h1>
+          <h1 className='mb-4 greeting'>Welcome to CodeMovie!</h1>
 
           {/* popular movies display */}
           <MovieCarousel />
