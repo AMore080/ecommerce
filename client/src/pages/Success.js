@@ -1,7 +1,13 @@
-import REACT, { useEffect } from 'react';
+import React from 'react';
 
-function Success() {
-
+const Success = () => {
+    return (
+        <div>
+            <h1>
+                Test Success
+            </h1>
+        </div>
+    )
 }
 
 export default Success;

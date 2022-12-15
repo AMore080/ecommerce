@@ -35,21 +35,20 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
-app.post('/checkout-session', async (req, res) => {
+app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        id: 1,
         quantity: 1,
       },
     ],
     payment_method_types: ['card'],
     mode: 'payment',
-    success_url: `${process.env.CLIENT_URL}/checkout-success`,
+    success_url: `${process.env.CLIENT_URL}/success`,
     cancel_url: `${process.env.CLIENT_URL}/profile`,
   });
 
-  res.send({ url: session.url });
+  res.redirect(303, session.url);
 });
 
 const startApolloServer = async (typeDefs, resolvers) => {
