@@ -41,7 +41,7 @@ const SignUp = () => {
       {/* Signup Form */}
       <form className='form' onSubmit={handleFormSubmit}>
         <h1 className='text-center'>Sign Up</h1>
-        <label for='username'>Username</label>
+        <label htmlFor='username'>Username</label>
         <input
           id='username'
           name='username'
@@ -51,7 +51,7 @@ const SignUp = () => {
           onChange={handleInputChange}
           required
         />
-        <label for='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input
           id='email'
           name='email'
@@ -61,7 +61,7 @@ const SignUp = () => {
           onChange={handleInputChange}
           required
         />
-        <label for='pwd'>password</label>
+        <label htmlFor='pwd'>password</label>
         <input
           id='pwd'
           name='password'
