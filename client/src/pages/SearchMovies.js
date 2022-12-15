@@ -1,106 +1,150 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
-import { QUERY_NOWPLAYING } from '../utils/queries';
+//copied from booksearch
+import React, { useState, useEffect } from 'react';
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+
+import Auth from '../utils/auth';
+import { saveMovie, searchMovieDB } from '../utils/API';
+import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
 const SearchMovies = () => {
-  // const { loading, data } = useQuery(QUERY_NOWPLAYING, {
-  //     fetchPolicy: "no-cache"
-  //   });
+  // create state for holding returned google api data
+  const [searchedMovies, setSearchedMovies] = useState([]);
+  // create state for holding our search field data
+  const [searchInput, setSearchInput] = useState('');
 
-  //   const nowPlayingList = data?.data.results || [];
-  //   console.log(nowPlayingList)
+  // create state to hold saved bookId values
+  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+
+  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+  useEffect(() => {
+    return () => saveMovieIds(savedMovieIds);
+  });
+
+  // create method to search for books and set state on form submit
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!searchInput) {
+      return false;
+    }
+
+    try {
+      const response = await searchMovieDB(searchInput);
+
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
+
+      const { results } = await response.json();
+
+      const  baselink = 'https://image.tmdb.org/t/p/w300/';
+
+      const movieData = results.map((movie) => ({
+        movieId: movie.id,
+        director:  ['No director to display'],
+        release_date: movie.release_date,
+        title: movie.title,
+        description: movie.overview,
+        backdrop: movie.backdrop_path || '',
+        image: baselink + movie.backdrop_path,
+      }));
+
+      setSearchedMovies(movieData);
+      setSearchInput('');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // create function to handle saving a movie to our database
+  const handleSaveMovie = async (movieId) => {
+    // find the book in `searchedBooks` state by the matching id
+    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const response = await saveMovie(movieToSave, token);
+
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
+
+      // if movie successfully saves to user's account, save movie id to state
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
-      <section className='container'>
-        {/* popular movies display */}
-
-        {/* search bar */}
-        <div className='m-3'>
-          <h1 className='text-center'>Search for movies</h1>
-          <form>
-            <input
-              name='searchInput'
-              type='text'
-              placeholder='Enter Movie Title'
-              className="form-control mb-4"
-            />
-            <select className="custom-select custom-select-lg mb-3">
-              <option value>Search by Genre</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-            <button type="submit" className="btn btn-lg mt-2">SEARCH</button>
-
-          </form>
-        </div>
-      </section >
-
-      {/* results */}
-      < section >
-        <h2 className='text-center mt-5'>Movie Results:</h2>
-        <Grid.Container gap={3} justify="center">
-          <Grid xs={12} sm={4}>
-            <Card css={{ w: "100%", h: "400px" }}>
-              <Card.Body css={{ p: 0 }}>
-                <Card.Image
-                  src='https://nextui.org/images/card-example-6.jpeg'
-                  width="100%"
-                  height="100%"
-                  objectFit="cover"
-                  alt="Movie Poster"
+      <Jumbotron fluid className='text-light bg-dark'>
+        <Container>
+          <h1>Search for Movies!</h1>
+          <Form onSubmit={handleFormSubmit}>
+            <Form.Row>
+              <Col xs={12} md={8}>
+                <Form.Control
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for a movie'
                 />
-              </Card.Body>
-              <Card.Footer
-                isBlurred
-                css={{
-                  position: "absolute",
-                  bgBlur: "#ffffff66",
-                  borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-                  bottom: 0,
-                  zIndex: 1,
-                }}
-              >
-                <Row>
-                  <Col>
-                    <Text color="#000" size={18}>
-                      Movie Title
-                    </Text>
-                  </Col>
-                  <Col>
-                    <Row justify="flex-end">
-                      <Button flat auto rounded color="secondary">
-                        <Text
-                          css={{ color: "inherit" }}
-                          size={12}
-                          weight="bold"
-                          transform="uppercase"
-                        >
-                          Add to Cart
-                        </Text>
-                      </Button>
-                    </Row>
-                  </Col>
-                </Row>
-              </Card.Footer>
-            </Card>
-          </Grid>
-        </Grid.Container>
-      </section >
+              </Col>
+              <Col xs={12} md={4}>
+                <Button type='submit' variant='success' size='lg'>
+                  Submit Search
+                </Button>
+              </Col>
+            </Form.Row>
+          </Form>
+        </Container>
+      </Jumbotron>
+
+      <Container>
+        <h2>
+          {searchedMovies.length
+            ? `Viewing ${searchedMovies.length} results:`
+            : 'Search for a movie to begin'}
+        </h2>
+        <CardColumns>
+          {searchedMovies.map((movie) => {
+            return (
+              <Card key={movie.movieId} border='dark'>
+                {movie.image ? (
+                  <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />
+                ) : null}
+                <Card.Body>
+                  <Card.Title>{movie.title}</Card.Title>
+                  <p className='small'>Release_Date: {movie.release_date}</p>
+                  <Card.Text>{movie.description}</Card.Text>
+                  {Auth.loggedIn() && (
+                    <Button
+                      disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}
+                      className='btn-block btn-info'
+                      onClick={() => handleSaveMovie(movie.movieId)}>
+                      {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
+                        ? 'This movie has already been saved!'
+                        : 'Save this Movie!'}
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
     </>
-  )
+  );
 };
 
 export default SearchMovies;
-
-
-// filter by genre --> drop down option OR input option
-// input to search movie by title
-// Movie data shows [poster, title, description, director]
-// button to add to cart and display price
-
-// carousel of popular movies --> hide when search is clicked --> make search bar smaller
-
-// welcome user back --> "Hello, [user] "

@@ -3,9 +3,11 @@ const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 require('dotenv').config();
-const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
+const { authMiddleware } = require('./utils/auth');
+
+
 const MoviesAPI = require('./schemas/movies-api')
 const db = require('./config/connection');
 
@@ -25,6 +27,9 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//test 
+// app.use('/api', require ('./routes/index'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
@@ -48,6 +53,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     })
   })
   };
+  
   
 // Call the async function to start the server
   startApolloServer(typeDefs, resolvers);

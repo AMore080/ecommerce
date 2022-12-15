@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client'
+import { Form, Button } from 'react-bootstrap';
+// import { useMutation } from '@apollo/client' //test
 import Auth from '../utils/auth';
 
-import { ADD_USER } from '../utils/mutations';
+// import { ADD_USER } from '../utils/mutations'; //test
+import { addUser } from '../utils/API'; //test
 
 const SignUp = () => {
   const [formData, setformData] = useState({ username: '', email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+  // const [addUser] = useMutation(ADD_USER); //test
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -20,11 +22,16 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addUser({
-        variables: { ...formData },
-      });
+      // const { data } = await addUser({
+      //   variables: { ...formData },
+      // }); //test
 
-      Auth.login(data.addUser.token);
+      const { data } = await addUser(formData); //test
+
+      const { token, user } = await data.json(); //test
+      console.log(user); //test
+      // Auth.login(data.addUser.token); //test
+      Auth.login(token);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +48,7 @@ const SignUp = () => {
       {/* Signup Form */}
       <div>
         <h1 className='text-center'>Sign Up</h1>
-        <form className='form' onSubmit={handleFormSubmit}>
+        <Form className='form' onSubmit={handleFormSubmit}>
           <label for='username'>Username</label>
           <input
             id='username'
@@ -72,11 +79,11 @@ const SignUp = () => {
             onChange={handleInputChange}
             required
           />
-          <button disabled={!(formData.username && formData.email && formData.password)}
+          <Button disabled={!(formData.username && formData.email && formData.password)}
           type='submit'>
             SIGN UP
-          </button>
-        </form>
+          </Button>
+        </Form>
       </div>
     </>
   )
