@@ -8,8 +8,7 @@ import { Card, Col, Text } from "@nextui-org/react";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_NOWPLAYING, {
-    fetchPolicy: "no-cache",
-    context: {clientName: 'rest'}
+    fetchPolicy: "no-cache"
   });
   console.log(data);
 
