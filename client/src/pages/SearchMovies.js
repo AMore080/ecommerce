@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
 import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from '@nextui-org/react';
 import MovieCarousel from '../components/MovieCarousel'
-import { ADD_TO_CART } from '../utils/actions';
+// import { ADD_TO_CART } from '../utils/actions';
 
 const SearchMovies = () => {
 
   const { setVisible, bindings } = useModal();
   const [display, setDisplay] = useState(false);
 
-  const addToCart = () => {
+  // const addToCart = () => {
     
-  }
+  // }
 
 
   return (
@@ -82,7 +82,7 @@ const SearchMovies = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <Button flat auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }} onClick={addToCart}>
+                          <Button flat auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
                             <Text
                               color='#c1ecf4'
                               size={14}

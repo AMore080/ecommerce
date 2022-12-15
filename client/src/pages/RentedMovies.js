@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { Spacer } from '@nextui-org/react';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 // import { loadStripe } from '@stripe/stripe-js';
 // require('dotenv').config();
 
@@ -11,11 +13,19 @@ const RentedMovies = () => {
   const [visible, setVisible] = useState(false);
   const [display, setDisplay] = useState(false);
 
+  const { data } = useQuery(QUERY_ME);
+  let user;
+
+  if (data) {
+    user = data.me;
+  };
+
   return (
     <>
       {/* Currently rented */}
       <div className='rented'>
-
+      {/* {user ? (
+        <> */}
         <button className='btn btn-block' onClick={() => setVisible(!visible)}>Rentals</button>
         {visible &&
 
@@ -62,6 +72,8 @@ const RentedMovies = () => {
             </Grid.Container>
           </div>
         }
+      {/* </>
+      // ) : null} */}
       </div>
 
       <Spacer y={1} />
