@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-# Set up Auth to handle data returned from a user login
   type Auth {
     token: ID!
     user: User
@@ -10,7 +9,13 @@ const typeDefs = gql`
   type result {
     backdrop_path: String!
     original_title: String!
+    overview: String!
     id: ID!
+  }
+
+  type genre {
+    id: ID!
+    name: String!
   }
 
   type SingleMovie {
@@ -23,11 +28,14 @@ const typeDefs = gql`
   type Query {
      me: User
      movies: [result]
-     singleMovie(id: ID!): SingleMovie
+     singleMovie(id: ID!): SingleMovie 
   }
 
   type Mutation {
-    addMovieWatchList(id: String!, original_title: String!, overview: String!, poster_path: String!): SingleMovie
+    addMovieWatchList(id: String!, original_title: String!, 
+      overview: String!,
+      poster_path: String!): SingleMovie
+      addUser(username: String!, email: String!, password: String!): Auth
   }
 
   type User {
@@ -46,9 +54,9 @@ const typeDefs = gql`
   }
 `
 
-  // type Mutation {
-  //   addMovie(title: String!, id: ID!, poster_path: String!)
-  // }
+// type Mutation {
+//   addMovie(title: String!, id: ID!, poster_path: String!)
+// }
 
 module.exports = typeDefs;
 

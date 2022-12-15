@@ -27,7 +27,7 @@ const Header = () => {
             </Navbar.Content>
 
           )}
-          <Navbar.Link as={Link} to='/profile'>Cart</Navbar.Link>
+          <Navbar.Link as={Link} to='/success'>Cart</Navbar.Link>
         </Navbar.Content>
       </Navbar>
     </>

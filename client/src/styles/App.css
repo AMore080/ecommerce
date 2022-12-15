@@ -57,6 +57,7 @@ nav {
   from {
     text-shadow: 0 0 10px #c0f2ff, 0 0 20px #c0f2ff, 0 0 30px #00e6e2, 0 0 40px #00d3e6, 0 0 50px #00b4e6, 0 0 60px #00a1e6, 0 0 70px #00a9e6;
   }
+
   to {
     text-shadow: 0 0 20px #c0f2ff, 0 0 30px #4ddeff, 0 0 40px #4dffea, 0 0 50px #4dd0ff, 0 0 60px #4df6ff, 0 0 70px #4dc4ff, 0 0 80px #4dcdff;
   }
@@ -80,10 +81,13 @@ main {
 
 }
 
-.carousel,
-.carousel img {
-  height: 30rem;
-  width: 40rem;
+.carousel h2 {
+  color: var(--breeze);
+}
+
+.carousel {
+  height: 100%;
+  width: 80%;
   margin: auto;
 }
 
