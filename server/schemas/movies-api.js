@@ -15,6 +15,11 @@ class MoviesAPI extends RESTDataSource {
         const data = await this.get(`${id}?api_key=${process.env.API_KEY}&language=en-US`)
         return data;
     }
+
+    async getPopularMovies() {
+        const data = await this.get(`popular?api_key=${process.env.API_KEY}`)
+        return data.results;
+    }
 }
 
 module.exports = MoviesAPI;

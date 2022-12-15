@@ -26,7 +26,7 @@ import Success from './pages/Success';
 
 const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
 
-const httpLink = new createHttpLink({
+const httpLink = createHttpLink({
   uri: '/graphql',
 });
 

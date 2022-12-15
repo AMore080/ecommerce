@@ -45,15 +45,16 @@ export const QUERY_SINGLEMOVIE = gql`
   }
 `
 
-export const QUERY_GENRES = gql`
-query genres {
+export const QUERY_POPULARMOVIES = gql`
+query popularMovies {
   data
     @rest(
       type: Movies
-      path: "/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}"
+      path: "popular?api_key=${process.env.REACT_APP_API_KEY}"
     ) {
     results {
-      name
+      title
+      backdrop_path
     }
   }
 }
