@@ -52,6 +52,7 @@ const SignUp = () => {
           onChange={handleInputChange}
         />
         <label htmlFor='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input
           name='email'
           type='email'
@@ -59,6 +60,7 @@ const SignUp = () => {
           value={formData.email}
           onChange={handleInputChange}
         />
+        <label htmlFor='pwd'>password</label>
         <label htmlFor='pwd'>password</label>
         <input
           name='password'

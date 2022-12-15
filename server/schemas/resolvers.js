@@ -17,9 +17,9 @@ const resolvers = {
             throw new AuthenticationError('You are not logged in!');
 
         },
-        order: async (parent, { _id }, context) => {
+        // order: async (parent, { _id }, context) => {
 
-        },
+        // },
         // checkout: async (parent, args, context) => {
         //     const url = new URL(context.headers.referer).origin;
         //     const order = new Order({ products: args.products });
@@ -66,52 +66,12 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
+            return {
+                user, token
+            }
         }
-    },
+    }
 
-    // Mutation: {
-    //     addUser: async (parent, { name, email, password }) => {
-    //         const user = await User.create({ name, email, password });
-    //         const token = signToken(user);
-
-    // login: async (parent, { email, password }) => {
-    //   const user = await User.findOne({ email });
-
-    //   if (!user) {
-    //     throw new AuthenticationError('No user with this email found');
-    //   }
-
-    //   const correctPw = await user.isCorrectPassword(password);
-
-    //   if (!correctPw) {
-    //     throw new AuthenticationError('Invalid Password');
-    //   }
-
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
-
-    //     saveMovies: async (parent, { movieData }, context) => {
-    //         if (context.user) {
-    //             const updateUser = await User.findByIdAndUpdate(
-    //                 { _id: context.user._id },
-    //                 { $push: { savedMovies: movieData } },
-    //                 { new: true }
-    //             );
-    //             return updateUser;
-    //         }
-    //     },
-
-    //     removeMovie: async (parent, { movieId }, context) => {
-    //         if (context.user) {
-    //             const updateUser = await User.findOneAndUpdate(
-    //                 { _id: context.user._id },
-    //                 { $pull: { savedMovies: movieId } },
-    //                 { new: true }
-    //             );
-    //             return updateUser;
-    //         }
-    //     },
 }
 
 module.exports = resolvers;
