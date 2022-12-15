@@ -148,3 +148,13 @@ const SearchMovies = () => {
 };
 
 export default SearchMovies;
+
+
+// filter by genre --> drop down option OR input option
+// input to search movie by title
+// Movie data shows [poster, title, description]
+// button to add to cart and display price
+
+// carousel of popular movies --> hide when search is clicked --> make search bar smaller
+
+// welcome user back --> 'Hello, [user] '

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-// import { useMutation } from '@apollo/client' //test
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client'
 import Auth from '../utils/auth';
-
-// import { ADD_USER } from '../utils/mutations'; //test
-import { addUser } from '../utils/API'; //test
+import { ADD_USER } from '../utils/mutations';
 
 const SignUp = () => {
   const [formData, setformData] = useState({ username: '', email: '', password: '' });
@@ -46,45 +44,43 @@ const SignUp = () => {
   return (
     <>
       {/* Signup Form */}
-      <div>
+      <form className='form' onSubmit={handleFormSubmit}>
         <h1 className='text-center'>Sign Up</h1>
-        <Form className='form' onSubmit={handleFormSubmit}>
-          <label for='username'>Username</label>
-          <input
-            id='username'
-            name='username'
-            type='username'
-            placeholder='Username'
-            value={formData.username}
-            onChange={handleInputChange}
-            required
-          />
-          <label for='email'>Email</label>
-          <input
-            id='email'
-            name='email'
-            type='email'
-            placeholder='youremail@test.com'
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-          <label for='pwd'>password</label>
-          <input
-            id='pwd'
-            name='password'
-            type='password'
-            placeholder='********'
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
-          <Button disabled={!(formData.username && formData.email && formData.password)}
-          type='submit'>
-            SIGN UP
-          </Button>
-        </Form>
-      </div>
+        <label for='username'>Username</label>
+        <input
+          id='username'
+          name='username'
+          type='username'
+          placeholder='Username'
+          value={formData.username}
+          onChange={handleInputChange}
+          required
+        />
+        <label for='email'>Email</label>
+        <input
+          id='email'
+          name='email'
+          type='email'
+          placeholder='youremail@test.com'
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+        <label for='pwd'>password</label>
+        <input
+          id='pwd'
+          name='password'
+          type='password'
+          placeholder='********'
+          value={formData.password}
+          onChange={handleInputChange}
+          required
+        />
+        <button disabled={!(formData.username && formData.email && formData.password)}
+          type='submit' className='rounded-pill'>
+          SIGN UP
+        </button>
+      </form>
     </>
   )
 };

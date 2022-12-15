@@ -3,6 +3,11 @@ const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 require('dotenv').config();
+<<<<<<< HEAD
+=======
+const { authMiddleware } = require('./utils/auth');
+const stripe = require('stripe')(process.env.SECRET_STRIPE);
+>>>>>>> main
 
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
@@ -39,6 +44,21 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        quantity: 1,
+      },
+    ],
+    payment_method_types: ['card'],
+    mode: 'payment',
+    success_url: `${process.env.CLIENT_URL}/success`,
+    cancel_url: `${process.env.CLIENT_URL}/profile`,
+  });
+
+  res.redirect(303, session.url);
+});
 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();

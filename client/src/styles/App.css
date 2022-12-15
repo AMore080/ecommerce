@@ -1,72 +1,226 @@
+/* Color pallet inspired by https://colorpalette.org/blue-green-smoke-color-palette/ */
+/* Color names from https://colornamer.robertcooper.me/ */
 :root {
   --full: 100%;
-
+  --midnight: #052029;
+  --crowberryBlue: #053b4b;
+  --verditerBlue: #55adbe;
+  --seafoam: #ade3e3;
+  --cranachBlue: #287b8b;
+  --breeze: #c1ecf4;
+  --stream: #96ccd7;
+  --ocean: #64afbe;
+  --aqueous: #388e8f;
+  --green: #add9c5;
 }
 
 * {
-  font-family: 'Andale Mono', Courier, monospace;
-  font-size: 18px;
-  line-height: 1.5
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--verditerBlue);
+}
+
+body {
+  background-color: var(--midnight);
 }
 
 html {
-  /* font-size: 62.5%; */
+  font-size: 62.5%;
 }
 
-
-/* Footer */
+/* Header & Footer */
 nav,
 footer {
   width: var(--full);
   min-height: 10vh;
+  background-color: var(--crowberryBlue) !important;
+}
+
+nav {
+  border-bottom: 0.3rem solid var(--cranachBlue);
+}
+
+.title {
+  font-style: italic;
+}
+
+.greeting {
+  font-size: 4rem;
+  color: white;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #c0f2ff, 0 0 20px #c0f2ff, 0 0 30px #00e6e2, 0 0 40px #00d3e6, 0 0 50px #00b4e6, 0 0 60px #00a1e6, 0 0 70px #00a9e6;
+  }
+  to {
+    text-shadow: 0 0 20px #c0f2ff, 0 0 30px #4ddeff, 0 0 40px #4dffea, 0 0 50px #4dd0ff, 0 0 60px #4df6ff, 0 0 70px #4dc4ff, 0 0 80px #4dcdff;
+  }
+}
+
+footer {
+  border-top: 0.3rem solid var(--cranachBlue);
 }
 
 main {
-  margin: 15px;
+  margin: 2rem;
+  margin-top: 3rem;
   min-height: 80vh;
 }
 
-/* Sign in forms */
+/* Movie Carousel */
+.carousel,
+.carousel img {
+  border: 0.1rem solid var(--stream) !important;
+  border-radius: 0.5rem;
 
+}
+
+.carousel,
+.carousel img {
+  height: 30rem;
+  width: 40rem;
+  margin: auto;
+}
+
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+  visibility: hidden;
+}
+
+.carousel:hover .carousel-control-prev-icon,
+.carousel:hover .carousel-control-next-icon {
+  visibility: visible;
+}
+
+/* Search page */
+.search {
+  background-color: var(--cranachBlue);
+  border: 0.3rem solid var(--ocean);
+  border-radius: 1rem;
+  color: var(--ocean);
+  width: 70%;
+}
+
+.search-form input,
+.search-form select {
+  background-color: var(--breeze);
+  border: 0.1rem solid var(--stream);
+  border-radius: 0.5rem;
+  color: var(--aqueous);
+  font-size: 1.5rem !important;
+  margin: auto;
+  padding: 1.5rem;
+  height: 6rem;
+  width: 80% !important;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+  background-color: #bbf5ff !important;
+  border: 0.1rem solid #82cedd !important;
+  color: #159395 !important;
+}
+
+::placeholder {
+  color: var(--aqueous) !important;
+}
+
+.search-btn,
+.form button {
+  text-align: center !important;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
+  color: var(--aqueous);
+  width: 30%;
+}
+
+.search-btn:hover,
+.form button:hover {
+  background-position: right center;
+  color: var(--crowberryBlue);
+}
+
+/* Sign in forms */
 .form {
-  margin: 30px auto;
-  padding: 10px 0;
-  width: 80%;
+  background-color: var(--cranachBlue);
+  border: 0.3rem double var(--green);
+  border-radius: 1.5rem;
+  margin: 3rem auto;
+  padding: 1rem 0;
+  width: 50rem;
+  height: 50rem;
   text-align: center;
 }
 
+.form h1 {
+  color: var(--green);
+}
+
 .form label {
+  color: var(--ocean);
   display: inline-block;
-  font-size: 20px;
+  font-size: 2rem;
   text-align: left;
   width: 75%;
-  margin: 10px;
+  margin: 1rem;
 }
 
 .form input {
-  padding: 10px;
+  background-color: var(--ocean);
+  border: 0.15rem solid var(--green);
+  border-radius: 0.5rem;
+  color: var(--breeze);
+  padding: 1.2rem;
   width: 75%;
 }
 
+.form input:focus {
+  background-color: var(--breeze);
+  border: 0.15rem solid var(--stream);
+  color: var(--cranachBlue);
+}
+
 .form button {
-  height: 35px;
-  width: 200px;
-  margin-top: 10px;
+  height: 3.5rem;
+  width: 20rem;
+  margin-top: 3rem;
+  border: var(--ocean);
 }
 
-
-@media (max-width: 992px) {
-
-  .forms {
-    flex-wrap: wrap !important;
-  }
-
+/* Profile */
+.rented,
+.watchlist {
+  margin: 2rem;
 }
 
-@media (max-width: 768px) {
+.rented .btn,
+.watchlist .btn {
+  background-color: var(--cranachBlue);
+  border: 0.2rem solid var(--stream);
+  border-radius: 1.5rem;
+  color: var(--breeze);
+  height: 5.5rem !important;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
 
-  .forms {
-    flex-wrap: wrap !important;
-  }
+.nextui-c-hhqfap {
+  color: var(--verditerBlue) !important;
+}
 
+.nextui-c-egxOLa {
+  background-color: var(--crowberryBlue) !important;
+}
+
+nav div ul li a:hover {
+  color: var(--green) !important;
+}
+
+nav div ul li a:focus {
+  color: var(--green);
 }
