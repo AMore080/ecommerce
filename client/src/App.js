@@ -11,7 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { RestLink } from "apollo-link-rest";
 import { NextUIProvider } from '@nextui-org/react';
-import './styles/App.css';
+import './styles/App.css'
 
 // Import components
 import Header from './components/Nav';
@@ -24,7 +24,7 @@ import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 import Success from './pages/Success';
 
-const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
+const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/" });
 
 const httpLink = createHttpLink({
   uri: '/graphql',

@@ -21,10 +21,10 @@ class MoviesAPI extends RESTDataSource {
         return data.results;
     }
 
-    async getSearchMovie() {
-        const data = await this.get(`search/movie?query=${search}&api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false`)
-        return data.results;
-    }
+    // async getSearchMovie() {
+    //     const data = await this.get(`search/movie?query=${search}&api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false`)
+    //     return data.results;
+    // }
 
 }
 

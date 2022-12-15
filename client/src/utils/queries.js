@@ -73,17 +73,17 @@ query genres {
   }
 }
 `
-export const QUERY_SEARCHMOVIE = gql`
-  query searchMovie {
-    data
-      @rest(
-        type: Movies
-        path: "search/movie?api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false&query=${searchInput}"
-      ) {
-      results {
-        title
-        backdrop_path
-      }
-    }
-  }
-`;
+// export const QUERY_SEARCHMOVIE = gql`
+//   query searchMovie {
+//     data
+//       @rest(
+//         type: Movies
+//         path: "search/movie?api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false&query=${searchInput}"
+//       ) {
+//       results {
+//         title
+//         backdrop_path
+//       }
+//     }
+//   }
+// `;
