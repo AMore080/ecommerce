@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 
-const movieSchema = require('./Movies');
+const Movie = require('./Movies');
 
 const userSchema = new Schema(
     {
@@ -22,12 +22,7 @@ const userSchema = new Schema(
             required: true,
         },
      
-        savedMovies: [movieSchema],
-
-    rentalStart: {
-        type: Date,
-        
-    }
+        savedMovies: [Movie.schema],
    
   },
 

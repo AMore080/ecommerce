@@ -23,7 +23,7 @@ export const QUERY_NOWPLAYING = gql`
     data
       @rest(
         type: Movies
-        path: "now_playing/?api_key=${process.env.API_KEY}"
+        path: "now_playing/?api_key=${process.env.REACT_APP_API_KEY}"
       ) {
       results {
         title

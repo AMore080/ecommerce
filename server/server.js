@@ -4,6 +4,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 require('dotenv').config();
 const { authMiddleware } = require('./utils/auth');
+const stripe = require('stripe')(process.env.SECRET_STRIPE);
 
 const { typeDefs, resolvers } = require('./schemas');
 const MoviesAPI = require('./schemas/movies-api')
@@ -11,16 +12,16 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-app.use(cors());
+// app.use(cors());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
-  dataSources: () => {
-    return {
-      MoviesAPI: new MoviesAPI()
-    }
-  }
+  // dataSources: () => {!
+  //   return {
+  //     MoviesAPI: new MoviesAPI()
+  //   }
+  // }
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -34,12 +35,27 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
+// app.post('/create-checkout-session', async (req, res) => {
+//   const session = await stripe.checkout.sessions.create({
+//     line_items: [
+//       {
+//         quantity: 1,
+//       },
+//     ],
+//     payment_method_types: ['card'],
+//     mode: 'payment',
+//     success_url: `${process.env.CLIENT_URL}/success`,
+//     cancel_url: `${process.env.CLIENT_URL}/profile`,
+//   });
+
+//   res.redirect(303, session.url);
+// });
 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
   
-  app.use(routes);
+  // app.use(routes);
 
   db.once('open', () => {
     app.listen(PORT, () => {

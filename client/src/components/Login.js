@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client'
-import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations'
+import Auth from '../utils/auth';
 
 const Login = () => {
   const [formData, setformData] = useState({ email: '', password: '' });
-  const [login, { error }] = useMutation(LOGIN_USER);
 
-  const handleChange = (event) => {
+  const [loginUser, { error }] = useMutation(LOGIN_USER);
+ 
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setformData({
       ...formData,
@@ -19,9 +20,10 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data } = await login({
+      const { data } = await loginUser({
         variables: { ...formData },
       });
+      console.log(formData)
 
       Auth.login(data.login.token);
     } catch (err) {
@@ -37,38 +39,35 @@ const Login = () => {
   return (
     <>
       {/* Login Form */}
-      < div >
+      <form className='form' onSubmit={handleFormSubmit}>
         <h1 className='text-center'>Login</h1>
-        <form className='form' onSubmit={handleFormSubmit}>
-          <label for='email'>Email</label>
-          <input
-            id='email'
-            name='email'
-            type='text'
-            placeholder='youremail@test.com'
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <label for='pwd'>password</label>
-          <input
-            id='pwd'
-            name='password'
-            type='password'
-            placeholder='********'
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button  disabled={!(formData.email && formData.password)}
-          type='submit' >
-            LOGIN
-          </button>
-          {error ? (
-            <div>
-              <p className='error-text'>The provided credentials are incorrect</p>
-            </div>
-          ) : null}
-        </form>
-      </div >
+        <label htmlFor='email'>Email</label>
+        <input
+          name='email'
+          type='text'
+          placeholder='youremail@test.com'
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+        <label htmlFor='password'>password</label>
+        <input
+          name='password'
+          type='password'
+          placeholder='********'
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+        <button disabled={!(formData.email && formData.password)}
+          type='submit' variant='success' className='rounded-pill'>
+          LOGIN
+        </button>
+        {error ? (
+          <div>
+            <p className='error-text'>The provided credentials are incorrect</p>
+          </div>
+        ) : null}
+      </form>
     </>
   )
 };
