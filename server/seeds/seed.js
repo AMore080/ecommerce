@@ -1,6 +1,6 @@
 const db = require('../config/connection');
 // not sure if I should seed movies
-const { User } = require('../models');
+const { User } = require('../models/User');
 const userSeed = require('./userSeed.json');
 
 db.once('open', async () => {
