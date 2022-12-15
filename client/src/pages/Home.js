@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_NOWPLAYING } from '../utils/queries';
@@ -11,7 +12,8 @@ const Home = () => {
   });
   console.log(data);
 
-  const nowPlayingList = data?.movies|| [];
+  const nowPlayingList = data?.data.results || [];
+  console.log(nowPlayingList)
 
   return (
     <div className="card bg-white card-rounded w-50">
