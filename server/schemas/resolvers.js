@@ -6,10 +6,10 @@ const stripe = require('stripe')(process.env.SECRET_KEY)
 const { MovieList } = require('../models');
 
 const resolvers = {
-    Query: {
-        me: async (parent, args, context) => {
-            if (context.user) {
-                const userData = await User.findOne({ _id: context.user.id }).select('-password');
+  Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user.id }).select('-__v -password');
 
                 return userData;
             }
@@ -42,6 +42,7 @@ const resolvers = {
                     id: movie.id,
                     backdrop_path: movie.backdrop_path,
                     original_title: movie.original_title,
+                    overview: movie.overview,
                 }))
             } catch (error) {
                 throw error;
@@ -56,6 +57,7 @@ const resolvers = {
             }
         }
     },
+
     Mutation: {
         addMovieWatchList: async (parent, args, { dataSources }) => {
             const addedMovie = await MovieList.create(args);

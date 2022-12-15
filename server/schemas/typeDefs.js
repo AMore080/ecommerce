@@ -9,7 +9,13 @@ const typeDefs = gql`
   type result {
     backdrop_path: String!
     original_title: String!
+    overview: String!
     id: ID!
+  }
+
+  type genre {
+    id: ID!
+    name: String!
   }
 
   type SingleMovie {
@@ -48,9 +54,9 @@ const typeDefs = gql`
   }
 `
 
-  // type Mutation {
-  //   addMovie(title: String!, id: ID!, poster_path: String!)
-  // }
+// type Mutation {
+//   addMovie(title: String!, id: ID!, poster_path: String!)
+// }
 
 module.exports = typeDefs;
 
