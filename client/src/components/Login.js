@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client'
-import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations'
+import Auth from '../utils/auth';
 
 const Login = () => {
   const [formData, setformData] = useState({ email: '', password: '' });
-  const [login, { error }] = useMutation(LOGIN_USER);
 
-  const handleChange = (event) => {
+  const [loginUser, { error }] = useMutation(LOGIN_USER);
+ 
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setformData({
       ...formData,
@@ -19,7 +20,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data } = await login({
+      const { data } = await loginUser({
         variables: { ...formData },
       });
 
@@ -39,26 +40,25 @@ const Login = () => {
       {/* Login Form */}
       <form className='form' onSubmit={handleFormSubmit}>
         <h1 className='text-center'>Login</h1>
-        <label for='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input
-          id='email'
           name='email'
           type='text'
           placeholder='youremail@test.com'
           value={formData.email}
-          onChange={handleChange}
+          onChange={handleInputChange}
+          required
         />
-        <label for='pwd'>password</label>
+        <label htmlFor='password'>password</label>
         <input
-          id='pwd'
           name='password'
           type='password'
           placeholder='********'
           value={formData.password}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <button disabled={!(formData.email && formData.password)}
-          type='submit' className='rounded-pill'>
+          type='submit' variant='success' className='rounded-pill'>
           LOGIN
         </button>
         {error ? (

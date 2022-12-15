@@ -44,3 +44,17 @@ export const QUERY_SINGLEMOVIE = gql`
     }
   }
 `
+
+export const QUERY_GENRES = gql`
+query genres {
+  data
+    @rest(
+      type: Movies
+      path: "/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}"
+    ) {
+    results {
+      name
+    }
+  }
+}
+`

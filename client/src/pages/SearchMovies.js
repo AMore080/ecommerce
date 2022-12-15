@@ -77,7 +77,7 @@ const SearchMovies = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <Button flat auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
+                          <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
                             <Text
                               color='#c1ecf4'
                               size={14}
@@ -117,7 +117,7 @@ const SearchMovies = () => {
                 </Text>
               </Modal.Body>
               <Modal.Footer>
-                <Button flat onClick={() => setVisible(false)} css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: '#388e8f', }}>
+                <Button onClick={() => setVisible(false)} css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: '#388e8f', }}>
                   <Text size={16} color='#c1ecf4'>
                     Close
                   </Text>
