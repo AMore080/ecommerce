@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client'
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
 const SignUp = () => {
   const [formData, setformData] = useState({ username: '', email: '', password: '' });
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     setformData({
       ...formData,
       [name]: value,
@@ -18,7 +18,6 @@ const SignUp = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData)
 
     try {
       const { data } = await addUser({
@@ -42,43 +41,41 @@ const SignUp = () => {
       {/* Signup Form */}
       <form className='form' onSubmit={handleFormSubmit}>
         <h1 className='text-center'>Sign Up</h1>
-
         <label htmlFor='username'>Username</label>
         <input
+          id='username'
           name='username'
-          type='text'
+          type='username'
           placeholder='Username'
           value={formData.username}
           onChange={handleInputChange}
+          required
         />
         <label htmlFor='email'>Email</label>
-        <label htmlFor='email'>Email</label>
         <input
+          id='email'
           name='email'
           type='email'
           placeholder='youremail@test.com'
           value={formData.email}
           onChange={handleInputChange}
+          required
         />
         <label htmlFor='pwd'>password</label>
-        <label htmlFor='pwd'>password</label>
         <input
+          id='pwd'
           name='password'
           type='password'
           placeholder='********'
           value={formData.password}
           onChange={handleInputChange}
+          required
         />
-        <button
+        <button disabled={!(formData.username && formData.email && formData.password)}
           type='submit' className='rounded-pill'>
           SIGN UP
         </button>
       </form>
-      {error ? (
-        <div>
-          <p className='error-text'>There was an issue with your signup</p>
-        </div>
-      ) : null}
     </>
   )
 };
