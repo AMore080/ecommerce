@@ -50,10 +50,8 @@ const typeDefs = gql`
   }
 `
 
-// type Mutation {
-//   addMovie(title: String!, id: ID!, poster_path: String!)
-// }
+  // type Mutation {
+  //   addMovie(title: String!, id: ID!, poster_path: String!)
+  // }
 
 module.exports = typeDefs;
-
-//    login(email: String!, password: String!): Auth (removed  line from mutation for now)     addUser(username: String!, email: String!, password: String!): Auth
