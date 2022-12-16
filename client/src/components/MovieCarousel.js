@@ -5,11 +5,10 @@ import { QUERY_NOWPLAYING } from "../utils/queries";
 
 const MovieCarousel = () => {
     const { loading, data } = useQuery(QUERY_NOWPLAYING, {
-        fetchPolicy: "no-cache",
-        context: { clientName: '@rest' }
+        fetchPolicy: "no-cache"
     });
 
-    const nowPlayingList = data?.data.results || [];
+    const nowPlayingList = data?.movies || [];
 
     return (
         <>
@@ -17,9 +16,9 @@ const MovieCarousel = () => {
                 <div>Loading...</div>
             ) : (
                 <Carousel fade className="mb-5">
-                    {nowPlayingList.map((movie, index) => {
+                    {nowPlayingList.map((movie) => {
                         return (
-                            <Carousel.Item key={index}>
+                            <Carousel.Item key={movie.id}>
                                 <img
                                     className="d-block "
                                     src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}

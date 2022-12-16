@@ -8,12 +8,11 @@ import { Card, Col, Text } from "@nextui-org/react";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_NOWPLAYING, {
-    fetchPolicy: "no-cache",
-    context: {clientName: 'rest'}
+    fetchPolicy: "no-cache"
   });
   console.log(data);
 
-  const nowPlayingList = data?.data.results || [];
+  const nowPlayingList = data?.movies || [];
   console.log(nowPlayingList)
 
   return (
@@ -31,7 +30,7 @@ const Home = () => {
             {nowPlayingList.map((movie) => {
               return (
                 <Grid>
-                    <Card key={movie.title}>
+                    <Card key={movie.id}>
                     <Card.Header css={{position: 'absolute',zIndex: 1, top: 5}}>
                         <Col>
                         <Text h4 color='White'>

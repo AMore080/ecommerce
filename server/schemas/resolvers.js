@@ -6,10 +6,10 @@ const stripe = require('stripe')(process.env.SECRET_KEY)
 const { MovieList } = require('../models');
 
 const resolvers = {
-  Query: {
-    me: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user.id }).select('-__v -password');
+    Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user.id });
 
                 return userData;
             }
@@ -42,7 +42,6 @@ const resolvers = {
                     id: movie.id,
                     backdrop_path: movie.backdrop_path,
                     original_title: movie.original_title,
-                    overview: movie.overview,
                 }))
             } catch (error) {
                 throw error;
@@ -57,7 +56,6 @@ const resolvers = {
             }
         }
     },
-
     Mutation: {
         addMovieWatchList: async (parent, args, { dataSources }) => {
             const addedMovie = await MovieList.create(args);
@@ -69,7 +67,24 @@ const resolvers = {
             return {
                 user, token
             }
-        }
+        },
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+      
+            if (!user) {
+              throw new AuthenticationError('No user found with this email address');
+            }
+      
+            const correctPw = await user.isCorrectPassword(password);
+      
+            if (!correctPw) {
+              throw new AuthenticationError('Incorrect credentials');
+            }
+      
+            const token = signToken(user);
+      
+            return { token, user };
+          },
     }
 
 }

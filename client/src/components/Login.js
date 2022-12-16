@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '../utils/mutations'
 import Auth from '../utils/auth';
 
-const Login = () => {
+const Login = (props) => {
   const [formData, setformData] = useState({ email: '', password: '' });
 
   const [loginUser, { error }] = useMutation(LOGIN_USER);
@@ -44,7 +44,7 @@ const Login = () => {
         <label htmlFor='email'>Email</label>
         <input
           name='email'
-          type='text'
+          type='email'
           placeholder='youremail@test.com'
           value={formData.email}
           onChange={handleInputChange}
