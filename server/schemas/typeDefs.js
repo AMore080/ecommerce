@@ -13,11 +13,6 @@ const typeDefs = gql`
     id: ID!
   }
 
-  type genre {
-    id: ID!
-    name: String!
-  }
-
   type SingleMovie {
     id: ID!
     original_title: String!

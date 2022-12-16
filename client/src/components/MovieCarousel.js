@@ -1,18 +1,15 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import { useQuery } from '@apollo/client';
-import { QUERY_POPULARMOVIES } from "../utils/queries";
+import { QUERY_NOWPLAYING } from "../utils/queries";
 
 const MovieCarousel = () => {
-    const { loading, data } = useQuery(QUERY_POPULARMOVIES, {
+    const { loading, data } = useQuery(QUERY_NOWPLAYING, {
         fetchPolicy: "no-cache",
-        context: { clientName: 'rest' }
+        context: { clientName: '@rest' }
     });
-    console.log(data);
 
-    const popularList = data?.data.results || [];
-    console.log(popularList)
-
+    const nowPlayingList = data?.data.results || [];
 
     return (
         <>
@@ -20,13 +17,13 @@ const MovieCarousel = () => {
                 <div>Loading...</div>
             ) : (
                 <Carousel fade className="mb-5">
-                    {popularList.map((movie) => {
+                    {nowPlayingList.map((movie, index) => {
                         return (
-                            <Carousel.Item>
+                            <Carousel.Item key={index}>
                                 <img
                                     className="d-block "
                                     src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
-                                    alt="Popular Movie"
+                                    alt="Now Playing"
                                 />
                                 <Carousel.Caption>
                                     <h2>{movie.title}</h2>
