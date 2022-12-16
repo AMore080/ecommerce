@@ -1,41 +1,37 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
+import { useQuery } from '@apollo/client';
+import { QUERY_NOWPLAYING } from "../utils/queries";
 
 const MovieCarousel = () => {
+    const { loading, data } = useQuery(QUERY_NOWPLAYING, {
+        fetchPolicy: "no-cache"
+    });
+
+    const nowPlayingList = data?.movies || [];
 
     return (
         <>
-            <Carousel fade className="mb-5">
-                <Carousel.Item>
-                    <img
-                        className="d-block "
-                        src="https://m.media-amazon.com/images/I/71x1RHSaEhL.jpg"
-                        alt="First slide"
-                    />
-                    
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block "
-                        src="https://m.media-amazon.com/images/I/71BPuv+iRbL.jpg"
-                        alt="Second slide"
-                    />
-
-                    
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img
-                        className="d-block "
-                        src="https://m.media-amazon.com/images/I/81au9XotE0L._AC_UF894,1000_QL80_.jpg"
-                        alt="Third slide"
-                    />
-
-                  
-                </Carousel.Item>
-            </Carousel>
-
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                <Carousel fade className="mb-5">
+                    {nowPlayingList.map((movie) => {
+                        return (
+                            <Carousel.Item key={movie.id}>
+                                <img
+                                    className="d-block "
+                                    src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
+                                    alt="Now Playing"
+                                />
+                                <Carousel.Caption>
+                                    <h2>{movie.title}</h2>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        )
+                    })}
+                </Carousel>
+            )}
         </>
     )
 }
