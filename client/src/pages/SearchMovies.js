@@ -3,12 +3,14 @@ import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from 
 import MovieCarousel from '../components/MovieCarousel'
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { QUERY_NOWPLAYING, QUERY_SEARCHMOVIE } from "../utils/queries";
+// import { ADD_TO_CART } from '../utils/actions';
+// import { useStoreContext } from '../utils/GlobalState';
+// import { Link } from 'react-router-dom';
 
 const SearchMovies = () => {
 
   const { setVisible, bindings } = useModal();
-  const [display, setDisplay] = useState(false);
-
+  const [search, setsearch] = useState('');
 
   const [searchResults, { loading, data }] = useLazyQuery(QUERY_SEARCHMOVIE, {
     fetchPolicy: "no-cache"
@@ -17,17 +19,36 @@ const SearchMovies = () => {
   const searchList = data?.searchMovie || [];
 
   // const [searchedMovies, setSearchedMovies] = useState([]);
-  const [search, setsearch] = useState('');
+  // const MovieItem = (item) => {
+  //   const [state, dispatch] = useStoreContext;
+
+  //   const {
+  //     _id,
+  //     original_title,
+  //     poster_path
+  //   } = item;
+
+  //   const { cart } = state
+
+  //   const addToCart = () => {
+  //     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
+  //     if (itemInCart) {
+  //       dispatch({
+  //         type: ADD_TO_CART,
+  //         movies: {...item}
+  //       });
+  //     }
+  //   }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await searchResults({variables: {search}});
+      const { data } = await searchResults({ variables: { search } });
       console.log(data)
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
-    
+
   };
 
   return (
@@ -54,7 +75,7 @@ const SearchMovies = () => {
           </form>
         </div>
 
- 
+
         {/* movieList */}
         {loading ? (
           <div>Loading...</div>
@@ -97,6 +118,8 @@ const SearchMovies = () => {
                             <Col>
                               <Row justify="flex-end">
                                 <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
+                                  {/* onClick={addToCart} */}
+
                                   <Text
                                     color='#c1ecf4'
                                     size={14}
@@ -151,6 +174,7 @@ const SearchMovies = () => {
       </Container>
     </>
   )
+  // }
 };
 
 export default SearchMovies;

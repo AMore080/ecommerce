@@ -6,13 +6,14 @@ export const QUERY_ME = gql`
             _id
             username
             email
-            inpMovieData {
-                director
-                description
-                movieId
-                image
-                link
-                title
+            movieOrders {
+                _id
+                purchaseDate
+                movies {
+                  _id
+                  original_title
+                  poster_path
+                }
             }
         }
     }
@@ -38,7 +39,8 @@ export const QUERY_SINGLEMOVIE = gql`
       release_date
     }
   }
-`
+`;
+
 export const QUERY_SEARCHMOVIE = gql`
 query searchMovie($search: String!) {
   searchMovie(search: $search) {
@@ -49,3 +51,11 @@ query searchMovie($search: String!) {
   }
 }
 `;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($movies: [ID]!) {
+    checkout(movies: $movies) {
+      rentDay
+    }
+  }
+`

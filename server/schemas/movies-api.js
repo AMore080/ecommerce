@@ -20,6 +20,13 @@ class MoviesAPI extends RESTDataSource {
         const data = await this.get(`/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${search}&page=1&include_adult=false`)
         return data.results;
     }
+
+    async movieDiscovery() {
+        const data = await this.get(`discover/movie?api_key=` + 
+        `${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate
+        `)
+        return data.results;
+    }
 }
 
 module.exports = MoviesAPI;
