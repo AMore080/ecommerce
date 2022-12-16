@@ -10,26 +10,26 @@ const SearchMovies = () => {
   const { setVisible, bindings } = useModal();
   const [display, setDisplay] = useState(false);
 
-  const MovieItem = (item) => {
-    const [state, dispatch] = useStoreContext;
+  // const MovieItem = (item) => {
+  //   const [state, dispatch] = useStoreContext;
 
-    const {
-      _id,
-      original_title,
-      poster_path
-    } = item;
+  //   const {
+  //     _id,
+  //     original_title,
+  //     poster_path
+  //   } = item;
 
-    const { cart } = state
+  //   const { cart } = state
 
-    const addToCart = () => {
-      const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-      if (itemInCart) {
-        dispatch({
-          type: ADD_TO_CART,
-          movies: {...item}
-        });
-      }
-    }
+  //   const addToCart = () => {
+  //     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
+  //     if (itemInCart) {
+  //       dispatch({
+  //         type: ADD_TO_CART,
+  //         movies: {...item}
+  //       });
+  //     }
+  //   }
 
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
@@ -138,7 +138,8 @@ const SearchMovies = () => {
                         </Col>
                         <Col>
                           <Row justify="flex-end">
-                            <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }} onClick={addToCart}>
+                            <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }} >
+                            {/* onClick={addToCart} */}
                               <Text
                                 color='#c1ecf4'
                                 size={14}
@@ -192,7 +193,8 @@ const SearchMovies = () => {
       </Container>
     </>
   )
-}};
+// }
+};
 
 export default SearchMovies;
 
