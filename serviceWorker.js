@@ -5,6 +5,7 @@ const assets = [
   "/styles/App.css",
   "/styles/index.css",
   "/js/app.js",
+  "https://nextui.org/images/card-example-6.jpeg"
 ]
 
 self.addEventListener("install", installEvent => {
