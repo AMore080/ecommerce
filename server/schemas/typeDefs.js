@@ -26,11 +26,18 @@ const typeDefs = gql`
   }
 
   type Mutation {
+<<<<<<< HEAD
+    addMovieWatchList(id: String!, original_title: String!, 
+      overview: String!,
+      poster_path: String!): SingleMovie
+      addUser(username: String!, email: String!, password: String!): Auth
+=======
     addMovieWatchList(id: String!, original_title: String!
     overview: String!
     poster_path: String!): SingleMovie
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+>>>>>>> dff4bb0d6a65acd368b3876ae58573ed13aa1750
   }
 
   type User {

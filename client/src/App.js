@@ -11,7 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { RestLink } from "apollo-link-rest";
 import { NextUIProvider } from '@nextui-org/react';
-import './styles/App.css';
+import './styles/App.css'
 
 // Import components
 import Header from './components/Nav';
@@ -21,7 +21,7 @@ import Footer from './components/Footer';
 import RentedMovies from './pages/RentedMovies';
 import SearchMovies from './pages/SearchMovies';
 import SignIn from './pages/SignIn';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import Success from './pages/Success';
 
 const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
@@ -45,9 +45,9 @@ const combinedLink = authLink.concat(httpLink)
 
 const client = new ApolloClient({
   link: ApolloLink.split(operation =>
-    operation.getContext().clientName === "rest",
+    operation.getContext().clientName === "@rest",
 
-    restLink, // Apollo will send to this if clientName is "rest"
+    restLink, // Apollo will send to this if clientName is "@rest"
 
     combinedLink // Otherwise will send to this
   ),
@@ -64,7 +64,7 @@ function App() {
             <main>
               <Routes>
               <Route path="/" element={<SearchMovies />} />
-              <Route path="/home" element={<Home />} />
+              {/* <Route path="/home" element={<Home />} /> */}
               <Route path="/profile" element={<RentedMovies />} />
               <Route path="/checkout" element={<RentedMovies />} />
               <Route path="/signin" element={<SignIn />} />
