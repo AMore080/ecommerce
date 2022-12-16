@@ -19,10 +19,17 @@ const typeDefs = gql`
     poster_path: String!
   }
 
+  type SearchMovie {
+    id: ID!
+    original_title: String!
+    poster_path: String
+  }
+
   type Query {
      me: User
      movies: [result]
-     singleMovie(id: ID!): SingleMovie 
+     singleMovie(id: ID!): SingleMovie
+     searchMovie(search: String!): [SearchMovie]
   }
 
   type Mutation {
@@ -49,7 +56,6 @@ const typeDefs = gql`
     title: String!
   }
 `
-
   // type Mutation {
   //   addMovie(title: String!, id: ID!, poster_path: String!)
   // }

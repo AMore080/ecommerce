@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from '@nextui-org/react';
 import MovieCarousel from '../components/MovieCarousel'
-// import { ADD_TO_WATCHLIST } from '../utils/actions';
+// import { ADD_TO_CART } from '../utils/actions';
 // import { useStoreContext } from '../utils/GlobalState';
 // import { Link } from 'react-router-dom';
 

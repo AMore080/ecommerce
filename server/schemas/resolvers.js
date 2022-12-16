@@ -54,6 +54,18 @@ const resolvers = {
             } catch (error) {
                 throw error;
             }
+        },
+        searchMovie: async (parent, args, {dataSources}) => {
+            try {
+                const searchList = await dataSources.MoviesAPI.searchMovie(args.search)
+                return searchList.map(movie => ({
+                    id: movie.id,
+                    poster_path: movie.poster_path,
+                    original_title: movie.original_title,
+                }))
+            } catch (error) {
+                throw error;
+            }
         }
     },
     Mutation: {
