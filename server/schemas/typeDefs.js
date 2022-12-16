@@ -21,7 +21,7 @@ const typeDefs = gql`
 
   type SearchMovie {
     id: ID!
-    original_title: String!
+    original_title: String
     poster_path: String
   }
 
@@ -30,6 +30,7 @@ const typeDefs = gql`
      movies: [result]
      singleMovie(id: ID!): SingleMovie
      searchMovie(search: String!): [SearchMovie]
+     movieDiscovery: [SearchMovie]
   }
 
   type Mutation {
