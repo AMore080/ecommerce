@@ -23,6 +23,7 @@ const typeDefs = gql`
     id: ID!
     original_title: String
     poster_path: String
+    overview: String!
   }
 
   type Query {

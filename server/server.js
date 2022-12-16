@@ -3,6 +3,7 @@ const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 require('dotenv').config();
+console.log( process.env)
 const { authMiddleware } = require('./utils/auth');
 const stripe = require('stripe')(process.env.SECRET_STRIPE);
 

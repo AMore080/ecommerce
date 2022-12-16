@@ -41,6 +41,17 @@ export const QUERY_SINGLEMOVIE = gql`
   }
 `;
 
+export const QUERY_SEARCHMOVIE = gql`
+query searchMovie($search: String!) {
+  searchMovie(search: $search) {
+    poster_path
+    id
+    original_title
+    overview
+  }
+}
+`;
+
 export const QUERY_CHECKOUT = gql`
   query getCheckout($movies: [ID]!) {
     checkout(movies: $movies) {
