@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from '@nextui-org/react';
 import MovieCarousel from '../components/MovieCarousel'
+import { QUERY_NOWPLAYING } from '../utils/queries';
 
 const SearchMovies = () => {
 
