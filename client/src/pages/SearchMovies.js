@@ -32,12 +32,6 @@ const SearchMovies = () => {
     }
 
   };
-  
-
-  // const addToCart = () => {
-    
-  // }
-
 
   return (
     <>
@@ -107,7 +101,7 @@ const SearchMovies = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <Button flat auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
+                          <Button flat auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }} onClick={addToCart}>
                             <Text
                               color='#c1ecf4'
                               size={14}
