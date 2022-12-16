@@ -17,11 +17,11 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
-  // dataSources: () => {!
-  //   return {
-  //     MoviesAPI: new MoviesAPI()
-  //   }
-  // }
+  dataSources: () => {
+    return {
+      MoviesAPI: new MoviesAPI()
+    }
+  }
 });
 
 app.use(express.urlencoded({ extended: true }));
