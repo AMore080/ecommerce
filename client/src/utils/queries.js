@@ -6,13 +6,14 @@ export const QUERY_ME = gql`
             _id
             username
             email
-            inpMovieData {
-                director
-                description
-                movieId
-                image
-                link
-                title
+            movieOrders {
+                _id
+                purchaseDate
+                movies {
+                  _id
+                  original_title
+                  poster_path
+                }
             }
         }
     }

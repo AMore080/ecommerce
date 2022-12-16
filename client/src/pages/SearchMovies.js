@@ -1,13 +1,38 @@
 import React, { useState } from 'react';
-// import { useQuery } from '@apollo/client';
 import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from '@nextui-org/react';
 import MovieCarousel from '../components/MovieCarousel'
-// import { ADD_TO_CART } from '../utils/actions';
+import { ADD_TO_CART } from '../utils/actions';
+import { useStoreContext } from '../utils/GlobalState';
+import { Link } from 'react-router-dom';
 
 const SearchMovies = () => {
 
   const { setVisible, bindings } = useModal();
   const [display, setDisplay] = useState(false);
+
+  const movieItem = (item) => {
+    const [state, dipatch] = useStoreContext;
+
+    const {
+      _id,
+      original_title,
+      poster_path
+    } = item;
+
+    const { cart } = state
+
+    const addToCart = () => {
+      const itemInCart = cart.find((cartItem) => cartItem._id === _id)
+      if (itemInCart) {
+        dispatch({
+          type: ADD_TO_CART,
+          movies: {...item}
+        });
+      }
+    }
+
+  };
+  
 
   // const addToCart = () => {
     

@@ -31,6 +31,7 @@ const RentedMovies = () => {
 
           <div>
             <Grid.Container gap={3} justify="center">
+            {/* {user.movieOrders.map((order) => ())} this needs to be wrapped around */}
               <Grid xs={12} sm={4}>
                 <Card css={{ w: "100%", h: "400px", border: '$borderWeights$normal solid #96ccd7' }}>
                   <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
