@@ -66,6 +66,18 @@ const resolvers = {
             } catch (error) {
                 throw error;
             }
+        },
+        movieDiscovery: async (parent, args, {dataSources}) => {
+            try {
+                const discoveryList = await dataSources.MoviesAPI.movieDiscovery();
+                return discoveryList.map(movie => ({
+                    id: movie.id,
+                    poster_path: movie.poster_path,
+                    original_title: movie.original_title,
+                }))     
+            } catch (error) {
+                throw error;
+            }
         }
     },
     Mutation: {
