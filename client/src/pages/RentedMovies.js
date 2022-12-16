@@ -117,7 +117,7 @@ const RentedMovies = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <form action = "http://localhost:3000/create-checkout-session" method = "POST">
+                          <form action = './Success'>
                           <Button flat auto rounded color='gradient' type="submit" css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
                             <Text
                               color='#c1ecf4'

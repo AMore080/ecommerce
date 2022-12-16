@@ -4,7 +4,7 @@ const Success = () => {
     return (
         <div>
             <h1>
-                Test Success
+                Enjoy your 30 day rental!
             </h1>
         </div>
     )
