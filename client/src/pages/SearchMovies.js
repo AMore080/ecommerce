@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from '@nextui-org/react';
 import MovieCarousel from '../components/MovieCarousel'
+import { useQuery } from '@apollo/client';
+import { QUERY_NOWPLAYING } from "../utils/queries";
 
 const SearchMovies = () => {
 
@@ -61,13 +63,6 @@ const SearchMovies = () => {
               className='form-control mb-4'
               onChange={(e) => setSearchInput(e.target.value)}
             />
-
-            <select className='form-control mb-4'>
-              <option value>Search by Genre</option>
-              <option value='1'>One</option>
-              <option value='2'>Two</option>
-              <option value='3'>Three</option>
-            </select>
 
             <button onClick={() => setDisplay(!display)} type='submit' className='search-btn btn btn-lg mt-2 rounded-pill'>SEARCH</button>
           </form>
