@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { Spacer } from '@nextui-org/react';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 // import { loadStripe } from '@stripe/stripe-js';
 // require('dotenv').config();
 
@@ -11,16 +13,25 @@ const RentedMovies = () => {
   const [visible, setVisible] = useState(false);
   const [display, setDisplay] = useState(false);
 
+  const { data } = useQuery(QUERY_ME);
+  let user;
+
+  if (data) {
+    user = data.me;
+  };
+
   return (
     <>
       {/* Currently rented */}
       <div className='rented'>
-
+      {/* {user ? (
+        <> */}
         <button className='btn btn-block' onClick={() => setVisible(!visible)}>Rentals</button>
         {visible &&
 
           <div>
             <Grid.Container gap={3} justify="center">
+            {/* {user.movieOrders.map((order) => ())} this needs to be wrapped around */}
               <Grid xs={12} sm={4}>
                 <Card css={{ w: "100%", h: "400px", border: '$borderWeights$normal solid #96ccd7' }}>
                   <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
@@ -62,6 +73,8 @@ const RentedMovies = () => {
             </Grid.Container>
           </div>
         }
+      {/* </>
+      // ) : null} */}
       </div>
 
       <Spacer y={1} />
@@ -104,7 +117,7 @@ const RentedMovies = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <form action = "http://localhost:3000/create-checkout-session" method = "POST">
+                          <form action = './Success'>
                           <Button flat auto rounded color='gradient' type="submit" css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
                             <Text
                               color='#c1ecf4'

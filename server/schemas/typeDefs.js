@@ -56,7 +56,6 @@ const typeDefs = gql`
     title: String!
   }
 `
-
   // type Mutation {
   //   addMovie(title: String!, id: ID!, poster_path: String!)
   // }
