@@ -62,6 +62,7 @@ const resolvers = {
                     id: movie.id,
                     poster_path: movie.poster_path,
                     original_title: movie.original_title,
+                    overview: movie.overview,
                 }))
             } catch (error) {
                 throw error;
