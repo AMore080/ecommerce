@@ -39,4 +39,12 @@ export const QUERY_SINGLEMOVIE = gql`
       release_date
     }
   }
+`;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($movies: [ID]!) {
+    checkout(movies: $movies) {
+      rentDay
+    }
+  }
 `

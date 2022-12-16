@@ -10,8 +10,8 @@ const SearchMovies = () => {
   const { setVisible, bindings } = useModal();
   const [display, setDisplay] = useState(false);
 
-  const movieItem = (item) => {
-    const [state, dipatch] = useStoreContext;
+  const MovieItem = (item) => {
+    const [state, dispatch] = useStoreContext;
 
     const {
       _id,
@@ -138,7 +138,7 @@ const SearchMovies = () => {
                         </Col>
                         <Col>
                           <Row justify="flex-end">
-                            <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
+                            <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }} onClick={addToCart}>
                               <Text
                                 color='#c1ecf4'
                                 size={14}
@@ -192,7 +192,7 @@ const SearchMovies = () => {
       </Container>
     </>
   )
-};
+}};
 
 export default SearchMovies;
 
@@ -204,4 +204,4 @@ export default SearchMovies;
 
 // carousel of popular movies --> hide when search is clicked --> make search bar smaller
 
-// welcome user back --> 'Hello, [user] '
+// welcome user back --> 'Hello, [user]
