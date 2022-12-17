@@ -3,10 +3,10 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer>
-      <h3 className='text-center pt-5'>
+      <h3 className='text-center pt-4'>
         © 2022
       </h3>
-      <div className='text-right'>
+      <div className='text-center pb-4'>
         <button type="button" id="installBtn" role="button">
         Click to Install!
       </button>
