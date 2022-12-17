@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Container, Grid, Card, Col, Row, Button, Text, Modal, useModal, } from '@nextui-org/react';
+import { Container, Grid, Card, Col, Button, Text, Popover } from '@nextui-org/react';
 import MovieCarousel from '../components/MovieCarousel'
-import { useQuery, useLazyQuery } from '@apollo/client';
-import { QUERY_NOWPLAYING, QUERY_SEARCHMOVIE } from "../utils/queries";
+import { useLazyQuery } from '@apollo/client';
+import { QUERY_SEARCHMOVIE } from "../utils/queries";
+import altPoster from '../images/altPoster.jpg'
 // import { ADD_TO_CART } from '../utils/actions';
 // import { useStoreContext } from '../utils/GlobalState';
 // import { Link } from 'react-router-dom';
 
 const SearchMovies = () => {
 
-  const { setVisible, bindings } = useModal();
   const [search, setsearch] = useState('');
 
   const [searchResults, { loading, data }] = useLazyQuery(QUERY_SEARCHMOVIE, {
@@ -18,7 +18,6 @@ const SearchMovies = () => {
 
   const searchList = data?.searchMovie || [];
 
-  // const [searchedMovies, setSearchedMovies] = useState([]);
   // const MovieItem = (item) => {
   //   const [state, dispatch] = useStoreContext;
 
@@ -48,7 +47,6 @@ const SearchMovies = () => {
     } catch (err) {
       console.log(err)
     }
-
   };
 
   return (
@@ -75,102 +73,86 @@ const SearchMovies = () => {
           </form>
         </div>
 
+        <section>
 
-        {/* movieList */}
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <section>
-            {searchList.map((movie) => {
-              return (
-                <div>
-                  <Grid.Container gap={3} justify='center'>
-                    <Grid xs={12} sm={4}>
-                      <Card key={movie.id} css={{ w: '100%', h: '400px', border: '$borderWeights$normal solid #96ccd7' }}>
-                        <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
+          {/* movieList */}
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <Grid.Container gap={3} justify='center'>
+
+              {searchList.map((movie) => {
+                return (
+                  <Grid xs={12} sm={4}>
+                    <Card key={movie.id} css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
+                      <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
+                        {movie.poster_path ? (
                           <Card.Image
-                            src={movie.poster_path}
+                            src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
                             width='100%'
                             height='100%'
                             objectFit='cover'
                             alt='Movie Poster'
                           />
-                        </Card.Body>
-                        <Card.Footer
-                          isBlurred
-                          css={{
-                            position: 'absolute',
-                            bgBlur: '#ffffff99',
-                            borderTop: '$borderWeights$light solid #96ccd7',
-                            bottom: 0,
-                            zIndex: 1,
-                          }}
-                        >
+                        ) : (<Card.Image
+                          src={altPoster}
+                          width='100%'
+                          height='100%'
+                          objectFit='cover'
+                          alt='Movie Poster'
+                        />)}
 
-                          <Row>
-                            <Col>
-                              <Text onClick={() => setVisible(true)} size={18} css={{
-                                color: '#287b8b', textGradient: '45deg, #c1ecf4 -20%, #388e8f 50%', ml: 10
+                      </Card.Body>
+                      <Card.Footer
+                        isBlurred
+                        css={{
+                          position: 'absolute',
+                          bgBlur: '#c1ecf455',
+                          borderTop: '$borderWeights$light solid #96ccd7',
+                          bottom: 0,
+                          zIndex: 1,
+                        }}
+                      >
+
+                        <Col className='col'>
+                          <Col className='col-center'>
+                            <Text size={18} weight="bold"
+                              css={{
+                                textGradient: '45deg, #053b4b -20%, #052029 50%'
                               }}>
-                                {movie.original_title}
-                              </Text>
-                            </Col>
-                            <Col>
-                              <Row justify="flex-end">
-                                <Button auto rounded color='gradient' css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
-                                  {/* onClick={addToCart} */}
+                              {movie.original_title}
+                            </Text>
+                          </Col>
+                          <Col className='col-center'>
+                            <Popover disableShadow>
+                              <Popover.Trigger>
+                                <Button className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #052029 -20.3%, #55adbe 70.46%)' }}>Movie Summary</Button>
+                              </Popover.Trigger>
+                              <Popover.Content className='content'>
+                                {movie.overview ? (
+                                  <Text css={{ p: "$10" }}>{movie.overview}</Text>
+                                ) : <Text css={{ p: "$10" }}>No summary available for this movie</Text>}
+                              </Popover.Content>
+                            </Popover>
+                          </Col>
+                          <Col className='col-center'>
+                            <Button className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
+                              {/* onClick={addToCart} */}
+                              Rent for 30 Days--$15.99
+                            </Button>
+                          </Col>
+                        </Col>
+                      </Card.Footer>
+                    </Card>
+                  </Grid>
+                )
+              })}
+            </Grid.Container>
+          )}
 
-                                  <Text
-                                    color='#c1ecf4'
-                                    size={14}
-                                    weight='bold'
-                                    transform='uppercase'
-                                  >
-                                    Rent for 30 Days--$15.99
-                                  </Text>
-                                </Button>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Card.Footer>
+        </section>
 
-                      </Card>
-                    </Grid>
-                  </Grid.Container>
 
-                  {/* Movie Description */}
-                  <Modal
-                    blur
-                    scroll
-                    width="50%"
-                    aria-labelledby="modal-title"
-                    aria-describedby="modal-description"
-                    css={{ background: '#053b4b' }}
-                    {...bindings}
-                  >
-                    <Modal.Header>
-                      <Text id="modal-title" size={28} color='#c1ecf4'>
-                        Description
-                      </Text>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Text id="modal-description" size={16} color='#c1ecf4'>
-                        {movie.overview}
-                      </Text>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button onClick={() => setVisible(false)} css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: '#388e8f', }}>
-                        <Text size={16} color='#c1ecf4'>
-                          Close
-                        </Text>
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </div>
-              )
-            })}
-          </section>
-        )}
       </Container>
     </>
   )

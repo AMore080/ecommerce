@@ -228,3 +228,30 @@ nav div ul li a:hover {
 nav div ul li a:focus {
   color: var(--green);
 }
+
+.col {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: .5rem;
+}
+
+.nextui-c-PJLV-ihkMzQk-css {
+  height: auto !important;
+  width: 50rem !important;
+  font-size: 1.5rem !important;
+  background-color: var(--midnight);
+  color: var(--seafoam);
+}
+
+.description {
+  width: 21rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--breeze);
+}
