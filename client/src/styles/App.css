@@ -228,3 +228,25 @@ nav div ul li a:hover {
 nav div ul li a:focus {
   color: var(--green);
 }
+
+#installBtn {
+  display: block;
+  margin: 0 auto;
+  height: 25px;
+  width: 100px;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: #4ddeff;
+  border-radius: 1rem;
+  color: rgb(0, 0, 0);
+}
+
+#installBtn:hover {
+  background-color: #97c4c0;
+  cursor: pointer;
+}
+
+#textHeader {
+  margin-top: 40px;
+  text-align: center;
+}
