@@ -255,3 +255,25 @@ nav div ul li a:focus {
   font-weight: bold;
   color: var(--breeze);
 }
+#installBtn {
+  /* display: block; */
+  margin: 0 auto;
+  height: 2.5rem;
+  width: 15rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: var(--verditerBlue);
+  border: 0.3rem double var(--cranachBlue);
+  border-radius: 1rem;
+  color: var(--midnight);
+}
+
+#installBtn:hover {
+  background-color: #97c4c0;
+  cursor: pointer;
+}
+
+#textHeader {
+  margin-top: 40px;
+  text-align: center;
+}
