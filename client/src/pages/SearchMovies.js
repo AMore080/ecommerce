@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Grid, Card, Col, Button, Text, Popover } from '@nextui-org/react';
+import { Loading } from "@nextui-org/react";
 import MovieCarousel from '../components/MovieCarousel'
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_SEARCHMOVIE } from "../utils/queries";
@@ -77,7 +78,10 @@ const SearchMovies = () => {
 
           {/* movieList */}
           {loading ? (
-            <div>Loading...</div>
+                  <Loading
+                  css={{margin: 'auto'}}
+                  loadingCss={{ $$loadingSize: "100px", $$loadingBorder: "10px"}}
+                />
           ) : (
             <Grid.Container gap={3} justify='center'>
 
