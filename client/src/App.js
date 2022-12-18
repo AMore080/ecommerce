@@ -1,9 +1,6 @@
 // Import dependencies
 import React from 'react';
 
-import axios from 'axios';
-import Stripe from "react-stripe-checkout";
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -60,24 +57,6 @@ const client = new ApolloClient({
 
 function App() {
 
-  const stripePublishkey = process.env.STRIPE_PUBLISH_KEY;
-
-  const handleToken = (totalAmount, token) => {
-    try{
-      axios.post("http://localhost:5000/api/stripe/pay", {
-          token: token.id,
-            amount: totalAmount
-      });
-    } catch (error) {
-      console.log(error);
-    };
-  };
-
-  const tokenHandler = (token) => {
-    handleToken(100,token);
-
-  }
-
   return (
     <ApolloProvider client={client}>
       <NextUIProvider>
@@ -94,10 +73,7 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path='*' element={<h1>Wrong page!</h1>} />
             </Routes>
-            <Stripe
-            stripeKey={`${stripePublishkey}`}
-            token={tokenHandler}
-            />
+            
             </main>
             <Footer />
           </>
