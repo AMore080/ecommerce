@@ -20,8 +20,8 @@
   need to install the following packages, npm i babel-loader @babel/core @babel/preset-env  @babel/plugin-transform-runtime @babel/runtime @css-loader @style-loader
 
   ## Usage
-  go to Herkoku and sign up for an account, then you can select movies to rent after you add them to your cart, you can click the stripe checkout button to checkout the movie 
-  
+  go to Heroku and sign up for an account, then you can select movies to rent. After you add them to your cart; you can click the stripe checkout button to checkout the movie 
+
   ## Licenses
   This project is covered under the MIT license. Please click on the license button to get more info.
   
@@ -33,6 +33,6 @@
   
   ## Github
   Have questions about this project?  
-  GitHub: https://github.com/DalPenny  
-  Email: Dalpenny@github.io.com
+  Developers GitHubs: https://github.com/DalPenny, https://github.com/dhoffman03, https://github.com/gt1222, https://github.com/AMore080  
+  Developers Emails: Dalpenny@github.io.com, gt1222@github.io.com, dhoffman03@github.io.com, AMore080@github.io.com 
 
