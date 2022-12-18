@@ -34,6 +34,11 @@
   testing completed with GraphQL and Apollo, as well as REACT devtools
   
   ## Screenshots
+  <img width="1440" alt="Screen Shot" src="client/public/images/login.png"> 
+<img width="1440" alt="Screen Shot" src="client/public/images/paycardbutton.png">
+<img width="1440" alt="Screen Shot" src="client/public/images/rentalpage.png">
+<img width="1440" alt="Screen Shot" src="client/public/images/stripepay.png">
+
 
   ## Link
   https://codemovie.herokuapp.com/
