@@ -140,7 +140,16 @@ main {
   background-size: 200% auto;
   background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
   color: var(--aqueous);
-  width: 30%;
+  width: 50%;
+}
+
+.discover-btn,
+.form button {
+  text-align: center !important;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
+  color: var(--aqueous);
+  width: 80%;
 }
 
 .search-btn:hover,
