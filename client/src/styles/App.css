@@ -273,6 +273,25 @@ nav div ul li a:focus {
   cursor: pointer;
 }
 
+
+.stripeBtn {
+  /* display: none; */
+  /* margin: 0 auto */
+  height: 2.8rem !important;
+  width: 15rem !important;
+  font-size: 1rem !important;
+  font-weight: bolder !important;
+  /* background-color: var(--verditerBlue);
+  border: 0.3rem double var(--cranachBlue); */
+  border-radius: 2rem !important;
+  color: var(--midnight) !important;
+}
+
+.stripeBtn:hover {
+  background-color: #97c4c0;
+  cursor: pointer;
+}
+
 #textHeader {
   margin-top: 40px;
   text-align: center;
