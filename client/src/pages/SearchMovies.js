@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Container, Grid, Card, Col, Button, Text, Popover } from '@nextui-org/react';
+import { Loading } from "@nextui-org/react";
 import MovieCarousel from '../components/MovieCarousel'
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_SEARCHMOVIE } from "../utils/queries";
 import altPoster from '../images/altPoster.jpg'
+import { GiArchiveResearch } from "react-icons/gi";
 // import { ADD_TO_CART } from '../utils/actions';
 // import { useStoreContext } from '../utils/GlobalState';
 // import { Link } from 'react-router-dom';
@@ -59,25 +61,39 @@ const SearchMovies = () => {
           <MovieCarousel />
 
           {/* search bar */}
-          <form className='search-form' onSubmit={handleFormSubmit}>
-            <input
-              name='search'
-              value={search}
-              type='text'
-              placeholder='Enter Movie Title'
-              className='form-control mb-4'
-              onChange={(e) => setsearch(e.target.value)}
-            />
-
-            <button type='submit' className='search-btn btn btn-lg mt-2 rounded-pill'>SEARCH</button>
+          <Grid.Container>
+          <Grid lg={7} xs={8}  justify="center">
+            <form className='search-form' onSubmit={handleFormSubmit}>
+              <input
+                name='search'
+                value={search}
+                type='text'
+                placeholder='Enter Movie Title'
+                className='form-control mb-4'
+                onChange={(e) => setsearch(e.target.value)}
+              />
+                <button type='submit' className='search-btn btn btn-lg mt-2 rounded-pill' auto><GiArchiveResearch />SEARCH</button>
           </form>
+          </Grid>
+            <Grid lg={4} xs={8}  justify="center">
+              <button type='submit' className='discover-btn btn btn-lg mt-2 rounded-pill' auto>
+                <Text 
+                  size={30} b color='verditerBlue'>
+                    No idea?
+                </Text>
+              </button>
+            </Grid>
+          </Grid.Container>
         </div>
 
         <section>
 
           {/* movieList */}
           {loading ? (
-            <div>Loading...</div>
+                  <Loading
+                  css={{margin: 'auto'}}
+                  loadingCss={{ $$loadingSize: "100px", $$loadingBorder: "10px"}}
+                />
           ) : (
             <Grid.Container gap={3} justify='center'>
 
