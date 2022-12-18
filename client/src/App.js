@@ -1,5 +1,9 @@
 // Import dependencies
 import React from 'react';
+
+import axios from 'axios';
+import Stripe from "react-stripe-checkout";
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -53,6 +57,8 @@ const client = new ApolloClient({
   ),
   cache: new InMemoryCache(),
 });
+
+// const handleToken = (totalAmount, token)
 
 function App() {
   return (

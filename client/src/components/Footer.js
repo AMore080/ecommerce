@@ -11,7 +11,7 @@ const Footer = () => {
         Click to Install!
       </button>
       </div>
-      <script src="../../../serviceWorker.js"></script>
+      <script src="../../serviceWorker.js"></script>
       <script src="../utils/install.js"></script>
     </footer>
   )
