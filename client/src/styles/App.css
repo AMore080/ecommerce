@@ -21,12 +21,12 @@
   color: var(--verditerBlue);
 }
 
-body {
+#root {
   background-color: var(--midnight);
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5% !important;
 }
 
 /* Header & Footer */
@@ -134,6 +134,7 @@ main {
   color: var(--aqueous) !important;
 }
 
+.discover-btn,
 .search-btn,
 .form button {
   text-align: center !important;
@@ -143,19 +144,16 @@ main {
   width: 50%;
 }
 
-.discover-btn,
-.form button {
-  text-align: center !important;
-  background-size: 200% auto;
-  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
-  color: var(--aqueous);
-  width: 80%;
-}
-
+.discover-btn:hover,
 .search-btn:hover,
 .form button:hover {
   background-position: right center;
   color: var(--crowberryBlue);
+}
+
+.discover-btn,
+.search-btn {
+  font-weight: bold;
 }
 
 /* Sign in forms */
@@ -264,8 +262,8 @@ nav div ul li a:focus {
   font-weight: bold;
   color: var(--breeze);
 }
+
 #installBtn {
-  /* display: block; */
   margin: 0 auto;
   height: 2.5rem;
   width: 15rem;
@@ -282,21 +280,27 @@ nav div ul li a:focus {
   cursor: pointer;
 }
 
+.stripeBtn span {
+  font-family: 'Chakra Petch', sans-serif !important;
+  font-size: 1rem !important;
+  background-image: var(--verditerBlue) !important;
+  color: var(--midnight) !important;
+  line-height: 2 !important;
+  border-radius: 1rem !important;
+}
 
 .stripeBtn {
-  /* display: none; */
-  /* margin: 0 auto */
-  height: 2.8rem !important;
+  margin: 0 auto !important;
+  height: 2.5rem !important;
   width: 15rem !important;
   font-size: 1rem !important;
   font-weight: bolder !important;
-  /* background-color: var(--verditerBlue);
-  border: 0.3rem double var(--cranachBlue); */
-  border-radius: 2rem !important;
-  color: var(--midnight) !important;
+  background: var(--verditerBlue) !important;
+  border: 0.3rem double var(--cranachBlue) !important;
+  border-radius: 1rem !important;
 }
 
-.stripeBtn:hover {
+.stripeBtn span:hover {
   background-color: #97c4c0;
   cursor: pointer;
 }

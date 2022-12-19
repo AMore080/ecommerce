@@ -6,6 +6,8 @@ import { useLazyQuery } from '@apollo/client';
 import { QUERY_SEARCHMOVIE } from "../utils/queries";
 import altPoster from '../images/altPoster.jpg'
 import { GiArchiveResearch } from "react-icons/gi";
+import { BsFillPatchQuestionFill } from "react-icons/bs";
+
 // import { ADD_TO_CART } from '../utils/actions';
 // import { useStoreContext } from '../utils/GlobalState';
 // import { Link } from 'react-router-dom';
@@ -61,39 +63,29 @@ const SearchMovies = () => {
           <MovieCarousel />
 
           {/* search bar */}
-          <Grid.Container>
-          <Grid lg={7} xs={8}  justify="center">
-            <form className='search-form' onSubmit={handleFormSubmit}>
-              <input
-                name='search'
-                value={search}
-                type='text'
-                placeholder='Enter Movie Title'
-                className='form-control mb-4'
-                onChange={(e) => setsearch(e.target.value)}
-              />
-                <button type='submit' className='search-btn btn btn-lg mt-2 rounded-pill' auto><GiArchiveResearch />SEARCH</button>
+          <form className='search-form' onSubmit={handleFormSubmit}>
+            <input
+              name='search'
+              value={search}
+              type='text'
+              placeholder='Enter Movie Title'
+              className='form-control mb-4'
+              onChange={(e) => setsearch(e.target.value)}
+            />
+            <button type='submit' className='search-btn btn btn-lg mt-2 rounded-pill' auto><GiArchiveResearch /> SEARCH</button>
           </form>
-          </Grid>
-            <Grid lg={4} xs={8}  justify="center">
-              <button type='submit' className='discover-btn btn btn-lg mt-2 rounded-pill' auto>
-                <Text 
-                  size={30} b color='verditerBlue'>
-                    No idea?
-                </Text>
-              </button>
-            </Grid>
-          </Grid.Container>
+
+          <button type='submit' className='discover-btn btn btn-lg mt-2 rounded-pill' auto><BsFillPatchQuestionFill /> NO IDEA?</button>
         </div>
 
         <section>
 
           {/* movieList */}
           {loading ? (
-                  <Loading
-                  css={{margin: 'auto'}}
-                  loadingCss={{ $$loadingSize: "100px", $$loadingBorder: "10px"}}
-                />
+            <Loading
+              css={{ margin: 'auto' }}
+              loadingCss={{ $$loadingSize: "100px", $$loadingBorder: "10px" }}
+            />
           ) : (
             <Grid.Container gap={3} justify='center'>
 
