@@ -32,27 +32,66 @@ html {
 /* Header & Footer */
 nav,
 footer {
-  width: var(--full);
-  min-height: 10vh;
+  width: var(--full) !important;
+  min-height: 10vh !important;
   background-color: var(--crowberryBlue) !important;
 }
 
 nav {
-  border-bottom: 0.3rem solid var(--cranachBlue);
+  border-bottom: 0.3rem solid var(--cranachBlue) !important;
 }
 
 .title {
-  font-style: italic;
+  font-style: italic !important;
 }
 
+main {
+  margin: 2rem;
+  margin-top: 3rem;
+  min-height: 80vh;
+}
+
+footer {
+  border-top: 0.3rem solid var(--cranachBlue);
+}
+
+/* Movie Carousel */
+.carousel,
+.carousel img {
+  border: 0.1rem solid var(--stream) !important;
+  border-radius: 0.5rem !important;
+}
+
+.carousel h2 {
+  color: var(--breeze) !important;
+}
+
+.carousel {
+  height: 100% !important;
+  width: 80% !important;
+  margin: auto;
+}
+
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+  visibility: hidden !important;
+}
+
+.carousel:hover .carousel-control-prev-icon,
+.carousel:hover .carousel-control-next-icon {
+  visibility: visible !important;
+}
+
+/* Search page */
 .greeting {
-  font-size: 4rem;
-  color: white;
+  font-size: 4rem !important;
+  color: white !important;
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;
 }
 
+/* Glow effect on hompage title */
 @keyframes glow {
   from {
     text-shadow: 0 0 10px #c0f2ff, 0 0 20px #c0f2ff, 0 0 30px #00e6e2, 0 0 40px #00d3e6, 0 0 50px #00b4e6, 0 0 60px #00a1e6, 0 0 70px #00a9e6;
@@ -63,45 +102,6 @@ nav {
   }
 }
 
-footer {
-  border-top: 0.3rem solid var(--cranachBlue);
-}
-
-main {
-  margin: 2rem;
-  margin-top: 3rem;
-  min-height: 80vh;
-}
-
-/* Movie Carousel */
-.carousel,
-.carousel img {
-  border: 0.1rem solid var(--stream) !important;
-  border-radius: 0.5rem;
-
-}
-
-.carousel h2 {
-  color: var(--breeze);
-}
-
-.carousel {
-  height: 100%;
-  width: 80%;
-  margin: auto;
-}
-
-.carousel .carousel-control-prev-icon,
-.carousel .carousel-control-next-icon {
-  visibility: hidden;
-}
-
-.carousel:hover .carousel-control-prev-icon,
-.carousel:hover .carousel-control-next-icon {
-  visibility: visible;
-}
-
-/* Search page */
 .search {
   background-color: var(--cranachBlue);
   border: 0.3rem solid var(--ocean);
@@ -118,8 +118,8 @@ main {
   color: var(--aqueous);
   font-size: 1.5rem !important;
   margin: auto;
-  padding: 1.5rem;
-  height: 6rem;
+  padding: 1.5rem !important;
+  height: 6rem !important;
   width: 80% !important;
 }
 
@@ -139,21 +139,21 @@ main {
 .form button {
   text-align: center !important;
   background-size: 200% auto;
-  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
-  color: var(--aqueous);
-  width: 50%;
+  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%) !important;
+  color: var(--aqueous) !important;
+  width: 50% !important;
 }
 
 .discover-btn:hover,
 .search-btn:hover,
 .form button:hover {
-  background-position: right center;
-  color: var(--crowberryBlue);
+  background-position: right center !important;
+  color: var(--crowberryBlue) !important;
 }
 
 .discover-btn,
 .search-btn {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 /* Sign in forms */
@@ -247,22 +247,25 @@ nav div ul li a:focus {
   margin-bottom: .5rem;
 }
 
+/* Movie Button */
+.description {
+  width: 21rem !important;
+  font-size: 1.5rem !important;
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  color: var(--breeze) !important;
+}
+
+/* Movie Description Content */
 .nextui-c-PJLV-ihkMzQk-css {
   height: auto !important;
   width: 50rem !important;
   font-size: 1.5rem !important;
-  background-color: var(--midnight);
-  color: var(--seafoam);
+  background-color: var(--midnight) !important;
+  color: var(--seafoam) !important;
 }
 
-.description {
-  width: 21rem;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: var(--breeze);
-}
-
+/* Install and Stripe */
 #installBtn {
   margin: 0 auto;
   height: 2.5rem;

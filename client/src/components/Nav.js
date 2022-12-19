@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Text } from '@nextui-org/react';
 import Auth from '../utils/auth';
