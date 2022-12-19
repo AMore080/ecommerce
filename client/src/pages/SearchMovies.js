@@ -187,11 +187,13 @@ const SearchMovies = () => {
                               {/* onClick={addToCart} */}
                               Rent for 30 Days--$15.99
                             </Button>
+                          </Col>
                           <Col className='col-center'>
                             {Auth.loggedIn() && (
                               <Button
+                                css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}
                                 disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.id)}
-                                className='btn-block btn-info'
+                                className='btn-block btn-info description'
                                 onClick={() => handleSaveMovie(movie.id)}>
                                 {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.id)
                                   ? 'This movie has already been saved!'
@@ -199,7 +201,6 @@ const SearchMovies = () => {
                               </Button>
                               )}
                             </Col>
-                          </Col>
                         </Col>
                       </Card.Footer>
                     </Card>
