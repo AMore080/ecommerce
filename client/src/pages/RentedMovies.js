@@ -94,9 +94,9 @@ const RentedMovies = () => {
         {display &&
           <div>
             <Grid.Container gap={3} justify="center">
-              <Grid xs={12} sm={4}>
                 {userData.savedMovies.map((movie) => {
                   return (
+                    <Grid xs={12} sm={4}>
                     <Card css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
                     <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
                     {movie.poster_path ? (
@@ -143,9 +143,9 @@ const RentedMovies = () => {
                       </Col>
                     </Card.Footer>
                   </Card>
+                </Grid>
                   )
                 })}
-              </Grid>
             </Grid.Container>
           </div>
         }
