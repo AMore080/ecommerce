@@ -2,49 +2,63 @@
 
   [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-  ## Table of Contents
-  * [Description](#description)
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Contributing](#contributing)
-  * [Tests](#tests)
-  * [Screenshots](#screenshots)
-  * [Link](#Link)
-  * [Github](#github)
-  * [Email Address](#email)
-  * [Licenses](#licenses)
+## Description
+  CodeMovie! is a website where users can go to find their favorite movies. Once logged in, they can search by title for a movie or do a random discover; and then add it to their rental cart or watchlist. Users will be able to find all of their rented and saved movies  in their profile. After the rental is started, the user is able to see how long they have until the rental expires.
 
+## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Deployed Application](#deployed-application)
+  - [Screenshots](#screenshots)
+  - [Tests](#tests)
+  - [Contributing](#contributing)
+  - [Questions](#questions)
+  - [Licenses](#licenses)
+
+
+## Installation
+  Users will clone the repository. After cloning, run `npm install` to install the dependencies.
+
+## Usage
+  Enter `npm run start` or `npm run develop` into the terminal to open this application on your local machine.
   
-  ## Description
-  CodeMovie! is a website where users can go to find their favorite movies. Once logged in, they can search for a movie and filter by genre; and then add it to their rental cart. After the rental is started, the user is able to see how long they have until the rental expires.
+  OR
 
-  ## Installation
-  need to install the following packages, npm i babel-loader @babel/core @babel/preset-env  @babel/plugin-transform-runtime @babel/runtime @css-loader @style-loader
+  Go to the offical deployed Heroku appication and sign up for an account. Once signed up you can search and discover movies. You will be able to rent or add these movies to your wishlist. When you add movies to your cart; you can click the stripe checkout button to rent the movie. On the profile page you will find your rentals and your watchlist.
 
-  ## Usage
-  go to Heroku and sign up for an account, then you can select movies to rent. After you add them to your cart; you can click the stripe checkout button to checkout the movie 
+## Deployed Application
 
-  ## Licenses
-  This project is covered under the MIT license. Please click on the license button to get more info.
-  
-  ## Contributing
+  * [Deployed website](https://codemovie.herokuapp.com/)
+
+  * [Code Repository](https://github.com/AMore080/ecommerce.git)
+
+## Screenshots
+![Homepage](./assets/homepage.png)
+![Search](./assets/searchResults.png)
+![Sign In](./assets/signIn.png)
+![Profile](./assets/profileMovies.png)
+![Success](./assets/success-2.png)
+
+## Tests
+  Testing completed with GraphQL and Apollo, as well as REACT devtools
+
+## Contributing
   Can add implementation for google, apple and samsung pay, enhancements to styling
-  
-  ## Tests
-  testing completed with GraphQL and Apollo, as well as REACT devtools
-  
-  ## Screenshots
-  <img width="1440" alt="Screen Shot" src="client/public/images/login.png"> 
-<img width="1440" alt="Screen Shot" src="client/public/images/paycardbutton.png">
-<img width="1440" alt="Screen Shot" src="client/public/images/rentalpage.png">
-<img width="1440" alt="Screen Shot" src="client/public/images/stripepay.png">
 
-
-  ## Link
-  https://codemovie.herokuapp.com/
-
-  ## Github
+## Questions
   Have questions about this project?  
-  Developers GitHubs: https://github.com/DalPenny, https://github.com/dhoffman03, https://github.com/gt1222, https://github.com/AMore080  
-  Developers Emails: Dalpenny@github.io.com, gt1222@github.io.com, dhoffman03@github.io.com, AMore080@github.io.com 
 
+  Developers GitHubs and Emails: 
+  * https://github.com/AMore080
+  * https://github.com/DalPenny
+  * https://github.com/dhoffman03
+  * https://github.com/gt1222
+
+  Developers Emails: 
+  * AMore080@github.io.com 
+  * Dalpenny@github.io.com
+  * dhoffman03@github.io.com
+  * gt1222@github.io.com
+  
+## Licenses
+  This project is covered under the MIT license. Please click on the license button to get more info.

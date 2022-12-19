@@ -20,7 +20,6 @@ const Footer = () => {
 
   const tokenHandler = (token) => {
     handleToken(100, token);
-
   }
 
   return (
