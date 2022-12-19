@@ -4,7 +4,8 @@ import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { Spacer } from '@nextui-org/react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
-import movieImg from '../images/Rental.jpg'
+import movieImg from '../images/Rental.jpg';
+import altPoster from '../images/altPoster.jpg'
 
 // import { loadStripe } from '@stripe/stripe-js';
 // require('dotenv').config();
@@ -23,11 +24,8 @@ const RentedMovies = () => {
   }
 
   const { data } = useQuery(QUERY_ME);
-  let user;
-
-  if (data) {
-    user = data.me;
-  };
+  let userData = data?.me;
+  console.log(userData)
 
   return (
     <>
@@ -97,44 +95,56 @@ const RentedMovies = () => {
           <div>
             <Grid.Container gap={3} justify="center">
               <Grid xs={12} sm={4}>
-                <Card css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
-                  <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
-                    <Card.Image
-                      src={movieImg}
-                      width="100%"
-                      height="100%"
-                      objectFit="cover"
-                      alt="Movie Poster"
-                    />
-                  </Card.Body>
-                  <Card.Footer
-                    isBlurred
-                    css={{
-                      position: 'absolute',
-                      bgBlur: '#c1ecf455',
-                      borderTop: '$borderWeights$light solid #96ccd7',
-                      bottom: 0,
-                      zIndex: 1,
-                    }}
-                  >
-                    <Col className='col'>
-                      <Col className='col-center'>
-                        <Text size={18} weight="bold"
-                          css={{
-                            textGradient: '45deg, #053b4b -20%, #052029 50%'
-                          }}>
-                          Your Saved Movie
-                        </Text>
+                {userData.savedMovies.map((movie) => {
+                  return (
+                    <Card css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
+                    <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
+                    {movie.poster_path ? (
+                          <Card.Image
+                            src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
+                            width='100%'
+                            height='100%'
+                            objectFit='cover'
+                            alt='Movie Poster'
+                          />
+                        ) : (<Card.Image
+                          src={altPoster}
+                          width='100%'
+                          height='100%'
+                          objectFit='cover'
+                          alt='Movie Poster'
+                        />)}
+                    </Card.Body>
+                    <Card.Footer
+                      isBlurred
+                      css={{
+                        position: 'absolute',
+                        bgBlur: '#c1ecf455',
+                        borderTop: '$borderWeights$light solid #96ccd7',
+                        bottom: 0,
+                        zIndex: 1,
+                      }}
+                    >
+                      <Col className='col'>
+                        <Col className='col-center'>
+                          <Text size={18} weight="bold"
+                            css={{
+                              textGradient: '45deg, #053b4b -20%, #052029 50%'
+                            }}>
+                            {movie.original_title}
+                          </Text>
+                        </Col>
+                        <Col className='col-center'>
+                          <Button onClick={routeChange}
+                            className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
+                            Start Rental
+                          </Button>
+                        </Col>
                       </Col>
-                      <Col className='col-center'>
-                        <Button onClick={routeChange}
-                          className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
-                          Start Rental
-                        </Button>
-                      </Col>
-                    </Col>
-                  </Card.Footer>
-                </Card>
+                    </Card.Footer>
+                  </Card>
+                  )
+                })}
               </Grid>
             </Grid.Container>
           </div>
