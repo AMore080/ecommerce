@@ -35,9 +35,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addMovieWatchList(id: String!, original_title: String!
-    overview: String!
-    poster_path: String!): SingleMovie
+    addMovieWatchList(movieData: inpMovieData): User
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
   }
@@ -47,15 +45,14 @@ const typeDefs = gql`
     username: String!
     email: String
     password: String
+    savedMovies: [SingleMovie]
   }
 
   input inpMovieData {
-    director: [String]
-    description: String!
-    movieId: String!
-    image: String
-    link: String
-    title: String!
+    id: ID!
+    original_title: String
+    poster_path: String
+    overview: String!
   }
 `
   // type Mutation {

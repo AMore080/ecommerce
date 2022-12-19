@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Auth from '../utils/auth'
+import { getSavedMovieIds, saveMovieIds } from '../utils/localstorage';
 import { Container, Grid, Card, Col, Button, Text, Popover } from '@nextui-org/react';
 import { Loading } from "@nextui-org/react";
 import MovieCarousel from '../components/MovieCarousel'
-import { useLazyQuery } from '@apollo/client';
-import { QUERY_SEARCHMOVIE } from "../utils/queries";
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import { QUERY_SEARCHMOVIE, QUERY_DISCOVER } from "../utils/queries";
+import { SAVE_MOVIE } from '../utils/mutations'
 import altPoster from '../images/altPoster.jpg'
 import { GiArchiveResearch } from "react-icons/gi";
 // import { ADD_TO_CART } from '../utils/actions';
@@ -13,6 +16,14 @@ import { GiArchiveResearch } from "react-icons/gi";
 const SearchMovies = () => {
 
   const [search, setsearch] = useState('');
+  const [savedMovieIds, setSavedMoviesIds] = useState(getSavedMovieIds());
+  const [saveMovie] = useMutation(SAVE_MOVIE);
+
+  useEffect(() => {
+    return () => saveMovieIds(savedMovieIds)
+  })
+
+  const discoverMovies = useQuery(QUERY_DISCOVER);
 
   const [searchResults, { loading, data }] = useLazyQuery(QUERY_SEARCHMOVIE, {
     fetchPolicy: "no-cache"
@@ -46,6 +57,26 @@ const SearchMovies = () => {
     try {
       const { data } = await searchResults({ variables: { search } });
       console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
+  const handleSaveMovie = async (id) => {
+    console.log(searchList)
+    const movieToSave = searchList.find((movie) => movie.id === id);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if(!token){
+      return false;
+    }
+
+    try {
+      await saveMovie({
+        variables: { movieData: {...movieToSave} },
+      });
+
+      setSavedMoviesIds([...savedMovieIds], movieToSave.id)
     } catch (err) {
       console.log(err)
     }
@@ -157,6 +188,19 @@ const SearchMovies = () => {
                               Rent for 30 Days--$15.99
                             </Button>
                           </Col>
+                          <Col className='col-center'>
+                            {Auth.loggedIn() && (
+                              <Button
+                                css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}
+                                disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.id)}
+                                className='btn-block btn-info description'
+                                onClick={() => handleSaveMovie(movie.id)}>
+                                {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.id)
+                                  ? 'This movie has already been saved!'
+                                  : 'Add to watchlist!'}
+                              </Button>
+                              )}
+                            </Col>
                         </Col>
                       </Card.Footer>
                     </Card>
