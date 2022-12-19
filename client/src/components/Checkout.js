@@ -6,8 +6,8 @@ import axios from 'axios';
 import Stripe from 'react-stripe-checkout';
 
 
-const STRIPE_PUBLISH_KEY = process.env.REACT_APP_STRIPE_PUBLISH_KEY;
-const stripeTestPromise = loadStripe(STRIPE_PUBLISH_KEY)
+// const STRIPE_PUBLISH_KEY = process.env.REACT_APP_STRIPE_PUBLISH_KEY;
+const stripeTestPromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISH_KEY);
 
 const Checkout = () => {
 
@@ -30,7 +30,7 @@ const Checkout = () => {
         <div>
           <Stripe
             className='stripeBtn'
-            stripeKey={`${STRIPE_PUBLISH_KEY}`}
+            // stripeKey={`${STRIPE_PUBLISH_KEY}`}
             token={tokenHandler}
           />
         </div>
@@ -39,3 +39,4 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
