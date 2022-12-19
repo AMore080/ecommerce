@@ -1,5 +1,6 @@
 // Import dependencies
 import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -55,6 +56,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <NextUIProvider>
@@ -71,6 +73,7 @@ function App() {
               <Route path="/success" element={<Success />} />
               <Route path='*' element={<h1>Wrong page!</h1>} />
             </Routes>
+            
             </main>
             <Footer />
           </>

@@ -140,7 +140,16 @@ main {
   background-size: 200% auto;
   background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
   color: var(--aqueous);
-  width: 30%;
+  width: 50%;
+}
+
+.discover-btn,
+.form button {
+  text-align: center !important;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #8ab1bd 0%, #add9c5ff 51%, #64afbe 100%);
+  color: var(--aqueous);
+  width: 80%;
 }
 
 .search-btn:hover,
@@ -269,6 +278,25 @@ nav div ul li a:focus {
 }
 
 #installBtn:hover {
+  background-color: #97c4c0;
+  cursor: pointer;
+}
+
+
+.stripeBtn {
+  /* display: none; */
+  /* margin: 0 auto */
+  height: 2.8rem !important;
+  width: 15rem !important;
+  font-size: 1rem !important;
+  font-weight: bolder !important;
+  /* background-color: var(--verditerBlue);
+  border: 0.3rem double var(--cranachBlue); */
+  border-radius: 2rem !important;
+  color: var(--midnight) !important;
+}
+
+.stripeBtn:hover {
   background-color: #97c4c0;
   cursor: pointer;
 }
