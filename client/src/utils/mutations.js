@@ -38,6 +38,23 @@ export const RENT_MOVIE_ORDER = gql`
     }
 `;
 
+export const SAVE_MOVIE = gql`
+mutation addMovieWatchList($movieData: inpMovieData) {
+    addMovieWatchList(movieData: $movieData) {
+      _id
+      email
+      password
+      username
+      savedMovies {
+        id
+        original_title
+        overview
+        poster_path
+      }
+    }
+  }
+`
+
 // export const EXPIRE_MOVIE = gql`
 //      mutation expireMovie ($movieData: inpMovieData!) {
 //         expireMovie(movie) {
