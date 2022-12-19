@@ -10,13 +10,13 @@ import { SAVE_MOVIE } from '../utils/mutations'
 import altPoster from '../images/altPoster.jpg'
 import { GiArchiveResearch } from "react-icons/gi";
 import { BsFillPatchQuestionFill } from "react-icons/bs";
-
+import DiscoverResults from '../components/Discover'
 // import { ADD_TO_CART } from '../utils/actions';
 // import { useStoreContext } from '../utils/GlobalState';
 // import { Link } from 'react-router-dom';
 
 const SearchMovies = () => {
-
+  const [visible, setVisible] = useState(false);
   const [search, setsearch] = useState('');
   const [savedMovieIds, setSavedMoviesIds] = useState(getSavedMovieIds());
   const [saveMovie] = useMutation(SAVE_MOVIE);
@@ -26,6 +26,7 @@ const SearchMovies = () => {
   })
 
   const discoverMovies = useQuery(QUERY_DISCOVER);
+  // const discoveryList = data?.movieDiscovery || [];
 
   const [searchResults, { loading, data }] = useLazyQuery(QUERY_SEARCHMOVIE, {
     fetchPolicy: "no-cache"
@@ -59,9 +60,23 @@ const SearchMovies = () => {
     try {
       const { data } = await searchResults({ variables: { search } });
       console.log(data)
+
+      setsearch('')
     } catch (err) {
       console.log(err)
     }
+  };
+
+  const handleDiscover = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await discoverMovies;
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+
+    setVisible(!visible)
   };
 
   const handleSaveMovie = async (id) => {
@@ -69,13 +84,13 @@ const SearchMovies = () => {
     const movieToSave = searchList.find((movie) => movie.id === id);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if(!token){
+    if (!token) {
       return false;
     }
 
     try {
       await saveMovie({
-        variables: { movieData: {...movieToSave} },
+        variables: { movieData: { ...movieToSave } },
       });
 
       setSavedMoviesIds([...savedMovieIds], movieToSave.id)
@@ -103,15 +118,15 @@ const SearchMovies = () => {
               className='form-control mb-4'
               onChange={(e) => setsearch(e.target.value)}
             />
-            <button type='submit' className='search-btn btn btn-lg mt-2 rounded-pill' auto><GiArchiveResearch /> SEARCH</button>
+            <button type='submit' className='search-btn btn btn-lg mt-2 rounded-pill'><GiArchiveResearch /> SEARCH</button>
           </form>
 
-          <button type='submit' className='discover-btn btn btn-lg mt-2 rounded-pill' auto><BsFillPatchQuestionFill /> NO IDEA?</button>
+          <button type='submit' onClick={handleDiscover} className='discover-btn btn btn-lg mt-2 rounded-pill'><BsFillPatchQuestionFill /> NO IDEA?</button>
         </div>
 
         <section>
 
-          {/* movieList */}
+          {/* Search Results */}
           {loading ? (
             <Loading
               css={{ margin: 'auto' }}
@@ -191,8 +206,8 @@ const SearchMovies = () => {
                                   ? 'This movie has already been saved!'
                                   : 'Add to watchlist!'}
                               </Button>
-                              )}
-                            </Col>
+                            )}
+                          </Col>
                         </Col>
                       </Card.Footer>
                     </Card>
@@ -202,8 +217,12 @@ const SearchMovies = () => {
             </Grid.Container>
           )}
 
-        </section>
+          {/* Discover Results */}
+          {visible &&
+            <DiscoverResults />
+          }
 
+        </section>
 
       </Container>
     </>
