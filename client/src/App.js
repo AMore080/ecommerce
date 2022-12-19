@@ -52,7 +52,9 @@ const client = new ApolloClient({
 
     combinedLink // Otherwise will send to this
   ),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false
+  }),
 });
 
 function App() {

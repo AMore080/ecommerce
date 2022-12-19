@@ -59,3 +59,14 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `
+
+export const QUERY_DISCOVER = gql`
+  query movieDiscover {
+    movieDiscovery {
+      id
+      original_title
+      overview
+      poster_path
+    }
+  }
+`

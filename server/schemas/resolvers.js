@@ -83,9 +83,19 @@ const resolvers = {
         }
     },
     Mutation: {
-        addMovieWatchList: async (parent, args, { dataSources }) => {
-            const addedMovie = await MovieList.create(args);
-            return addedMovie;
+        addMovieWatchList: async (parent, { movieData }, context) => {
+            if (context.user) {
+                const updatedMovie = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savedMovies: movieData } },
+                    {
+                        new: true,
+                        runValidators: true
+                    }
+                );
+                return updatedMovie;
+            }
+            throw new AuthenticationError(`You're not logged in!`)
         },
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
