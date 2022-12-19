@@ -5,7 +5,7 @@ import { useStoreContext } from '../utils/GlobalState';
 import { ADD_TO_CART } from '../utils/actions';
 
 const Cart = () => {
-    const { carItems } = 
+    const { carItems } = movies;
 
     useEffect(() => {
         async function getCart () {

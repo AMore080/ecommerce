@@ -1,13 +1,13 @@
 import React from 'react';
-// import { Elements } from '@stripe/react-stripe-js';
-// import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 // import PaymentForm from './PaymentForm';
 import axios from 'axios';
 import Stripe from 'react-stripe-checkout';
 
 
 const STRIPE_PUBLISH_KEY = process.env.REACT_APP_STRIPE_PUBLISH_KEY;
-// const stripeTestPromise = loadStripe(STRIPE_PUBLISH_KEY)
+const stripeTestPromise = loadStripe(STRIPE_PUBLISH_KEY)
 
 const Checkout = () => {
 
@@ -26,6 +26,7 @@ const Checkout = () => {
       handleToken(100, token);
     }
     return (
+        <Elements stripe={stripeTestPromise}>
         <div>
           <Stripe
             className='stripeBtn'
@@ -33,6 +34,7 @@ const Checkout = () => {
             token={tokenHandler}
           />
         </div>
+        </Elements>
     )
 };
 

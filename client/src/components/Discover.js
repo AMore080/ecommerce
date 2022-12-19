@@ -5,12 +5,14 @@ import { Grid, Card, Col, Button, Text, Popover } from '@nextui-org/react';
 import { Loading } from "@nextui-org/react";
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_DISCOVER } from "../utils/queries";
-import altPoster from '../images/altPoster.jpg'
-import { SAVE_MOVIE } from '../utils/mutations'
+import altPoster from '../images/altPoster.jpg';
+import { SAVE_MOVIE } from '../utils/mutations';
+import Checkout from '../components/Checkout';
 
 const DiscoverResults = () => {
   const [savedMovieIds, setSavedMoviesIds] = useState(getSavedMovieIds());
   const [saveMovie] = useMutation(SAVE_MOVIE);
+  const [showItem, setShowItem] = useState(false);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds)
@@ -106,10 +108,11 @@ const DiscoverResults = () => {
                         </Popover>
                       </Col>
                       <Col className='col-center'>
-                        <Button className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
-                          {/* onClick={addToCart} */}
-                          Rent for 30 Days--$15.99
-                        </Button>
+                      {showItem ? <Checkout/> :
+                            <Button className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }} onClick={()=> setShowItem(true)}>
+                              Rent for 30 Days--$15.99
+                            </Button>
+                      }
                       </Col>
                       <Col className='col-center'>
                         {Auth.loggedIn() && (
