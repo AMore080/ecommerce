@@ -23,7 +23,7 @@ class MoviesAPI extends RESTDataSource {
 
     async movieDiscovery() {
         const data = await this.get(`discover/movie?api_key=` + 
-        `${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate
+        `${process.env.API_KEY}&language=en-US&sort_by=popularity.desc&certification_country=US&include_adult=false&include_video=false&page=${Math.floor(Math.random() * 500)}&with_watch_monetization_types=flatrate
         `)
         return data.results;
     }
