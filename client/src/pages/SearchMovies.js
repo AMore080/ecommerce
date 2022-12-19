@@ -6,13 +6,13 @@ import { Loading } from "@nextui-org/react";
 import MovieCarousel from '../components/MovieCarousel'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import { QUERY_SEARCHMOVIE, QUERY_DISCOVER } from "../utils/queries";
-import { SAVE_MOVIE } from '../utils/mutations'
+import { SAVE_MOVIE, RENT_MOVIE_ORDER } from '../utils/mutations'
 import altPoster from '../images/altPoster.jpg'
 import { GiArchiveResearch } from "react-icons/gi";
 import { BsFillPatchQuestionFill } from "react-icons/bs";
 import DiscoverResults from '../components/Discover'
-// import { ADD_TO_CART } from '../utils/actions';
-// import { useStoreContext } from '../utils/GlobalState';
+import { ADD_TO_CART } from '../utils/actions';
+import Checkout from '../components/Checkout';
 // import { Link } from 'react-router-dom';
 
 const SearchMovies = () => {
@@ -20,6 +20,9 @@ const SearchMovies = () => {
   const [search, setsearch] = useState('');
   const [savedMovieIds, setSavedMoviesIds] = useState(getSavedMovieIds());
   const [saveMovie] = useMutation(SAVE_MOVIE);
+  // const [rentMovie, setRentMovie] = useState([]);
+  // const [movieCart] = useMutation(RENT_MOVIE_ORDER);
+  const [showItem, setShowItem] = useState(false);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds)
@@ -33,26 +36,6 @@ const SearchMovies = () => {
 
   const searchList = data?.searchMovie || [];
 
-  // const MovieItem = (item) => {
-  //   const [state, dispatch] = useStoreContext;
-
-  //   const {
-  //     _id,
-  //     original_title,
-  //     poster_path
-  //   } = item;
-
-  //   const { cart } = state
-
-  //   const addToCart = () => {
-  //     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-  //     if (itemInCart) {
-  //       dispatch({
-  //         type: ADD_TO_CART,
-  //         movies: {...item}
-  //       });
-  //     }
-  //   }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -89,7 +72,7 @@ const SearchMovies = () => {
 
     try {
       await saveMovie({
-        variables: { movieData: { ...movieToSave } },
+        variables: { rentData: { ...movieToSave } },
       });
 
       setSavedMoviesIds([...savedMovieIds, movieToSave.id])
@@ -97,6 +80,20 @@ const SearchMovies = () => {
       console.log(err)
     }
   };
+
+  // const addToCart = async (id) => {
+  //   const cartItems = searchList.find((movie) => movie.id === id);
+
+  //   try {
+  //     await movieCart({
+  //       variables: { movieData: { ...cartItems } },
+  //     });
+
+  //     setRentMovie([...rentMovie, cartItems.id])
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <>
@@ -189,10 +186,11 @@ const SearchMovies = () => {
                             </Popover>
                           </Col>
                           <Col className='col-center'>
-                            <Button className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
-                              {/* onClick={addToCart} */}
+                            {showItem ? <Checkout/> :
+                            <Button className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }} onClick={()=> setShowItem(true)}>
                               Rent for 30 Days--$15.99
                             </Button>
+                            }
                           </Col>
                           <Col className='col-center'>
                             {Auth.loggedIn() && (

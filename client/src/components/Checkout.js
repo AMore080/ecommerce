@@ -1,31 +1,39 @@
+import React from 'react';
+// import { Elements } from '@stripe/react-stripe-js';
 // import { loadStripe } from '@stripe/stripe-js';
-// require('dotenv').config();
+// import PaymentForm from './PaymentForm';
+import axios from 'axios';
+import Stripe from 'react-stripe-checkout';
 
-// const stripePromise = loadStripe(process.env.PUBLIC_KEY)
 
-// const Checkout = () => {
-//     if(!stripePromise) {
-//         stripePromise
-//     }
-// }
-// const button = document.querySelector("button");
-// button.addEventListener("click", () => {
-//     fetch('http://localhost:3000/checkout-session', {
-//         method: "POST",
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: ({
-//             items: []
-//         })
-//     }).then(res => {
-//         if(res.ok) return res.json
-//         return res.json().then(json => Promis.reject(json))
-//     }).then(({ url }) => {
-//         console.log(url);
-//     }).catch(e => {
-//         console.log(e.error);
-//     })
-// })
+const STRIPE_PUBLISH_KEY = process.env.REACT_APP_STRIPE_PUBLISH_KEY;
+// const stripeTestPromise = loadStripe(STRIPE_PUBLISH_KEY)
 
-// export default Checkout;
+const Checkout = () => {
+
+    const handleToken = (totalAmount, token) => {
+      try {
+        axios.post("http://localhost:5000/api/stripe/pay", {
+          token: token.id,
+          amount: totalAmount
+        });
+      } catch (error) {
+        console.log(error);
+      };
+    };
+  
+    const tokenHandler = (token) => {
+      handleToken(100, token);
+    }
+    return (
+        <div>
+          <Stripe
+            className='stripeBtn'
+            stripeKey={`${STRIPE_PUBLISH_KEY}`}
+            token={tokenHandler}
+          />
+        </div>
+    )
+};
+
+export default Checkout;
