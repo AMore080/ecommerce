@@ -312,3 +312,11 @@ nav div ul li a:focus {
   margin-top: 40px;
   text-align: center;
 }
+
+.success {
+  text-align: center;
+  font-size: 8rem;
+  padding-top: 15rem;
+  color: #d2f6ff !important;
+  animation: glow 1s ease-in-out infinite alternate;
+}

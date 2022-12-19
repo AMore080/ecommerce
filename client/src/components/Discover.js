@@ -119,7 +119,7 @@ const DiscoverResults = () => {
                             className='btn-block btn-info description'
                             onClick={() => handleSaveMovie(movie.id)}>
                             {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.id)
-                              ? 'This movie has already been saved!'
+                              ? 'Movie saved!'
                               : 'Add to watchlist!'}
                           </Button>
                         )}

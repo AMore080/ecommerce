@@ -26,7 +26,6 @@ const SearchMovies = () => {
   })
 
   const discoverMovies = useQuery(QUERY_DISCOVER);
-  // const discoveryList = data?.movieDiscovery || [];
 
   const [searchResults, { loading, data }] = useLazyQuery(QUERY_SEARCHMOVIE, {
     fetchPolicy: "no-cache"
@@ -93,7 +92,7 @@ const SearchMovies = () => {
         variables: { movieData: { ...movieToSave } },
       });
 
-      setSavedMoviesIds([...savedMovieIds], movieToSave.id)
+      setSavedMoviesIds([...savedMovieIds, movieToSave.id])
     } catch (err) {
       console.log(err)
     }
@@ -203,7 +202,7 @@ const SearchMovies = () => {
                                 className='btn-block btn-info description'
                                 onClick={() => handleSaveMovie(movie.id)}>
                                 {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.id)
-                                  ? 'This movie has already been saved!'
+                                  ? 'Movie saved!'
                                   : 'Add to watchlist!'}
                               </Button>
                             )}

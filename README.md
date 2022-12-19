@@ -36,7 +36,8 @@
 ![Homepage](./assets/homepage.png)
 ![Search](./assets/searchResults.png)
 ![Sign In](./assets/signIn.png)
-![Profile](./assets/profile.png)
+![Profile](./assets/profileMovies.png)
+![Success](./assets/success-2.png)
 
 ## Tests
   Testing completed with GraphQL and Apollo, as well as REACT devtools

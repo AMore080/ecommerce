@@ -55,8 +55,5 @@ const typeDefs = gql`
     overview: String!
   }
 `
-  // type Mutation {
-  //   addMovie(title: String!, id: ID!, poster_path: String!)
-  // }
 
 module.exports = typeDefs;

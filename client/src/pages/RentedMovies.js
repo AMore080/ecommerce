@@ -1,8 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { Spacer } from '@nextui-org/react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import movieImg from '../images/Rental.jpg'
+
 // import { loadStripe } from '@stripe/stripe-js';
 // require('dotenv').config();
 
@@ -12,6 +15,12 @@ import { QUERY_ME } from '../utils/queries';
 const RentedMovies = () => {
   const [visible, setVisible] = useState(false);
   const [display, setDisplay] = useState(false);
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/success`;
+    navigate(path);
+  }
 
   const { data } = useQuery(QUERY_ME);
   let user;
@@ -24,24 +33,24 @@ const RentedMovies = () => {
     <>
       {/* Currently rented */}
       <div className='rented'>
-      {/* {user ? (
+        {/* {user ? (
         <> */}
         <button className='btn btn-block' onClick={() => setVisible(!visible)}>Rentals</button>
         {visible &&
 
           <div>
             <Grid.Container gap={3} justify="center">
-            {/* {user.movieOrders.map((order) => ())} this needs to be wrapped around */}
+              {/* {user.movieOrders.map((order) => ())} this needs to be wrapped around */}
               <Grid xs={12} sm={4}>
-                <Card css={{ w: "100%", h: "400px", border: '$borderWeights$normal solid #96ccd7' }}>
+                <Card css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
                   <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                     <Text size={15} weight="bold" transform="uppercase" color="#c41212">
-                      Expires in [X] days
+                      Expires in 30 days
                     </Text>
                   </Card.Header>
                   <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
                     <Card.Image
-                      src='https://nextui.org/images/card-example-6.jpeg'
+                      src={movieImg}
                       width="100%"
                       height="100%"
                       objectFit="cover"
@@ -51,8 +60,8 @@ const RentedMovies = () => {
                   <Card.Footer
                     isBlurred
                     css={{
-                      position: "absolute",
-                      bgBlur: '#ffffff99',
+                      position: 'absolute',
+                      bgBlur: '#c1ecf455',
                       borderTop: '$borderWeights$light solid #96ccd7',
                       bottom: 0,
                       zIndex: 1,
@@ -60,10 +69,11 @@ const RentedMovies = () => {
                   >
                     <Row>
                       <Col>
-                        <Text color="#000" size={20} className='text-center' css={{
-                          color: '#287b8b', textGradient: '45deg, #c1ecf4 -20%, #388e8f 50%'
-                        }}>
-                          Movie Title
+                        <Text size={20} className='text-center' weight="bold"
+                          css={{
+                            textGradient: '45deg, #053b4b -20%, #052029 50%'
+                          }}>
+                          Your Rented Movie
                         </Text>
                       </Col>
                     </Row>
@@ -73,7 +83,7 @@ const RentedMovies = () => {
             </Grid.Container>
           </div>
         }
-      {/* </>
+        {/* </>
       // ) : null} */}
       </div>
 
@@ -87,10 +97,10 @@ const RentedMovies = () => {
           <div>
             <Grid.Container gap={3} justify="center">
               <Grid xs={12} sm={4}>
-                <Card css={{ w: "100%", h: "400px", border: '$borderWeights$normal solid #96ccd7' }}>
+                <Card css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
                   <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
                     <Card.Image
-                      src='https://nextui.org/images/card-example-6.jpeg'
+                      src={movieImg}
                       width="100%"
                       height="100%"
                       objectFit="cover"
@@ -100,38 +110,29 @@ const RentedMovies = () => {
                   <Card.Footer
                     isBlurred
                     css={{
-                      position: "absolute",
-                      bgBlur: '#ffffff99',
+                      position: 'absolute',
+                      bgBlur: '#c1ecf455',
                       borderTop: '$borderWeights$light solid #96ccd7',
                       bottom: 0,
                       zIndex: 1,
                     }}
                   >
-                    <Row>
-                      <Col>
-                        <Text size={18} css={{
-                          color: '#287b8b', textGradient: '45deg, #c1ecf4 -20%, #388e8f 50%', ml: 10
-                        }}>
-                          Movie Title
+                    <Col className='col'>
+                      <Col className='col-center'>
+                        <Text size={18} weight="bold"
+                          css={{
+                            textGradient: '45deg, #053b4b -20%, #052029 50%'
+                          }}>
+                          Your Saved Movie
                         </Text>
                       </Col>
-                      <Col>
-                        <Row justify="flex-end">
-                          <form action = './Success'>
-                          <Button flat auto rounded color='gradient' type="submit" css={{ background: 'linear-gradient(112deg, #8ab1bd -63.59%, #add9c5ff -20.3%, #64afbe 70.46%)', color: ' #388e8f', mr: 10 }}>
-                            <Text
-                              color='#c1ecf4'
-                              size={14}
-                              weight='bold'
-                              transform='uppercase'
-                            >
-                              Start Rental
-                            </Text>
-                          </Button>
-                          </form>
-                        </Row>
+                      <Col className='col-center'>
+                        <Button onClick={routeChange}
+                          className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
+                          Start Rental
+                        </Button>
                       </Col>
-                    </Row>
+                    </Col>
                   </Card.Footer>
                 </Card>
               </Grid>
