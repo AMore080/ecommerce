@@ -72,7 +72,7 @@ const SearchMovies = () => {
 
     try {
       await saveMovie({
-        variables: { rentData: { ...movieToSave } },
+        variables: { movieData: { ...movieToSave } },
       });
 
       setSavedMoviesIds([...savedMovieIds, movieToSave.id])
