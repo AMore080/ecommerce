@@ -94,6 +94,49 @@ const RentedMovies = () => {
         {display &&
           <div>
             <Grid.Container gap={3} justify="center">
+            {/* Placeholder for saved movies */}
+            <Grid xs={12} sm={4}>
+                <Card css={{ w: '100%', h: '100%', border: '$borderWeights$normal solid #96ccd7' }}>
+                  <Card.Body css={{ p: 0, background: '#96ccd7ff' }}>
+                    <Card.Image
+                      src={movieImg}
+                      width="100%"
+                      height="100%"
+                      objectFit="cover"
+                      alt="Movie Poster"
+                    />
+                  </Card.Body>
+                  <Card.Footer
+                    isBlurred
+                    css={{
+                      position: 'absolute',
+                      bgBlur: '#c1ecf455',
+                      borderTop: '$borderWeights$light solid #96ccd7',
+                      bottom: 0,
+                      zIndex: 1,
+                    }}
+                  >
+                    <Col className='col'>
+                      <Col className='col-center'>
+                        <Text size={18} weight="bold"
+                          css={{
+                            textGradient: '45deg, #053b4b -20%, #052029 50%'
+                          }}>
+                          Your Saved Movie
+                        </Text>
+                      </Col>
+                      <Col className='col-center'>
+                        <Button onClick={routeChange}
+                          className='description' css={{ background: 'linear-gradient(112deg, #053b4b -63.59%, #55adbe -20.3%, #052029 70.46%)' }}>
+                          Start Rental
+                        </Button>
+                      </Col>
+                    </Col>
+                  </Card.Footer>
+                </Card>
+              </Grid>
+
+              {/* Saved Movies */}
                 {userData.savedMovies.map((movie) => {
                   return (
                     <Grid xs={12} sm={4}>
