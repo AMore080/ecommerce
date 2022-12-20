@@ -156,13 +156,3 @@ const RentedMovies = () => {
 };
 
 export default RentedMovies;
-
-
-
-// Rentals section --> started rentals
-// display expiration 
-// remove automaticlly when expired
-
-// watchlist section 
-// purchased movies go here first
-// when start rental is selected move to rentals section and add expiration
