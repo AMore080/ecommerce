@@ -21,6 +21,14 @@ import SearchMovies from './pages/SearchMovies';
 import SignIn from './pages/SignIn';
 import Success from './pages/Success';
 
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is your test publishable API key.
+const promise = loadStripe("pk_test_51MCvg5EebBOxf0reCY0E9ZTk68FifUPnphbPubajAzjyN4ciywW3h6knpP0Cj79XuN5AmxIORTa53uPafWXF8lsL00Y7TL6PL0");
+
 const restLink = new RestLink({ uri: "https://api.themoviedb.org/3/movie/" });
 
 const httpLink = createHttpLink({
@@ -60,6 +68,7 @@ function App() {
       <NextUIProvider>
         <Router>
           <>
+          <Elements stripe={promise}>
             <Header />
             <main>
               <Routes>
@@ -73,6 +82,7 @@ function App() {
 
             </main>
             <Footer />
+            </Elements>
           </>
         </Router>
       </NextUIProvider>

@@ -6,6 +6,7 @@ require('dotenv').config();
 console.log( process.env)
 const { authMiddleware } = require('./utils/auth');
 const stripe = require('stripe')(process.env.SECRET_STRIPE);
+// const bodyparser= require('body-parser');
 
 const striperoutes = require('./routes/stripe-route');
 const { typeDefs, resolvers } = require('./schemas');
@@ -14,7 +15,7 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-// app.use(cors());
+app.use(cors());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -40,21 +41,31 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
-// app.post('/create-checkout-session', async (req, res) => {
-//   const session = await stripe.checkout.sessions.create({
-//     line_items: [
-//       {
-//         quantity: 1,
-//       },
-//     ],
-//     payment_method_types: ['card'],
-//     mode: 'payment',
-//     success_url: `${process.env.CLIENT_URL}/success`,
-//     cancel_url: `${process.env.CLIENT_URL}/profile`,
-//   });
 
-//   res.redirect(303, session.url);
-// });
+
+app.post('/payment', cors(), async (req, res) => {
+  const { amount, id } = req.body
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "USD",
+      description: "movie rental",
+      payment_method: id,
+      confirm: true
+    })
+    console.log("Payment", payment)
+    res.json({
+      message: "Payment success",
+      success: true
+    })
+  } catch (error) {
+    console.log("Error", error)
+    res.json({
+      message: "Payment failed",
+      success: false
+    })
+  }
+});
 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();

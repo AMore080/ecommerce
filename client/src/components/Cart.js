@@ -1,12 +1,11 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import { useLazQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { useStoreContext } from '../utils/GlobalState';
 import { ADD_TO_CART } from '../utils/actions';
 
 const Cart = () => {
-    const [state, dispatch] = useStoreContext();
-    // const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
+    const { carItems } = movies;
 
     useEffect(() => {
         async function getCart () {
@@ -24,5 +23,6 @@ const Cart = () => {
 
 }
 
+export default Cart;
 
 
